@@ -1,0 +1,501 @@
+<div class="container-fluid">
+    <div class="row top-row">
+        <div class="col-md-1 w40-p0">
+            <img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png" (click)="home()">
+        </div>
+        <div class="col-md-6 w40-p0">
+            <img src="../../assets/trackalt-2x.png" class="logo-text" (click)="home()">
+        </div>
+        <div class="col-md-5 p-0">
+            <img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+        </div>
+    </div>
+
+    <div class="distictListContainer">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 8%;">CODE</th>
+                    <th scope="col" style="width: 16%;">SCHOOL NAME</th>
+                    <th scope="col" style="width: 16%;">EMAIL</th>
+                    <th scope="col" style="width: 11%;">PH.NO.</th>
+                    <th scope="col">CITY</th>
+                    <th scope="col" style="width: 11%;">District</th>
+                    <th scope="col">PRINCIPAL</th>
+                    <th scope="col">ACTIONS</th>
+                </tr>
+            </thead>
+
+            <tbody *ngIf="schoolList && schoolList.length > 0">
+                <tr *ngFor="let item of schoolList; let i = index">
+                    <td>{{item.code}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.officeEmail}}</td>
+                    <td>{{item.officePhoneNumber}}</td>
+                    <td>{{item.physicalCity}}</td>
+                    <td>{{item.physicalDistrict}}</td>
+                    <td *ngIf="item.principalFirstName && item.principalLastName">
+                        {{item.principalFirstName.charAt(0).toUpperCase() + item.principalFirstName.slice(1)}}
+                        {{item.principalLastName.charAt(0).toUpperCase() + item.principalLastName.slice(1)}}</td>
+                    <td *ngIf="item.principalFirstName && !item.principalLastName">
+                        {{item.principalFirstName.charAt(0).toUpperCase() + item.principalFirstName.slice(1)}}</td>
+                    <td *ngIf="!item.principalFirstName && item.principalLastName">N/A</td>
+                    <td class="text-right pull-right">
+                        <button class="btn btn-sm mar-5-left" title="Edit Department" (click)="editSchoolData(item)">
+                            <img src="../../../assets/edit (2).png">
+                        </button>
+                        <button class="btn btn-sm mar-5-left" title="Edit Department" (click)="deleteSchoolData(item)">
+                            <img src="../../../assets/delete (3).png">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="schoolList && schoolList.length == 0">
+                <h5 class="text-center no_data"> No Data Found!</h5>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="fixed-bottom">
+        <img src="../../assets/Bottom Triangle.png" class="footer-image">
+        <button type="button" class="btn btn-sm plus-icon" (click)="openAddModal()" data-toggle="modal"
+            data-target="#addSchoolModal">
+            <img src="../../../assets/plus.png" data-toggle="tooltip" title="Add new record">
+        </button>
+    </div>
+    <div class="fixed-bottom row">
+
+        <div class="col-md-2 w20-p0">
+            <!-- <img src="../../assets/Footer Menu Link-2x.png" class="menu-icon"> -->
+        </div>
+        <div class="col-md-8 text-center w60-p0">
+            <p class="user-info">Welcome {{userName}} !!</p>
+        </div>
+        <div class="col-md-2 text-center w20-p0">
+            <!-- <img src="../../assets/Profile Icon-2x.png" class="profile-icon" (click)="logout()" data-toggle="tooltip"
+                data-placement="top" title="Log Out">
+            <p style="color: white;">Profile</p> -->
+
+            <div class="w3-dropdown-hover">
+                <img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
+                    data-placement="top" title="Log Out">
+                <p style="color: white;">Profile</p>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addSchoolModal" tabindex="-1" role="dialog" aria-labelledby="addSchoolModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="addSchoolModalLabel" style="font-weight: 500">Add School</h5>
+                <div>
+                    <input name="img" id="files" type="file" class="choose-img" (change)="selectFile($event)"
+                        style="visibility:hidden; width: 0;" accept="image/*">
+                    <img *ngIf="imageUrl" class="user_image" src="{{imageUrl}}" alt="teacher_image">
+                    <img class="user_image" *ngIf="!imageUrl"
+                        src="https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg"
+                        alt="teacher_image">
+                    <label *ngIf="!imageUrl" for="files" class="btn edit_image" style="color: white;">Select
+                        Image</label>
+                </div>
+                <br>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">School Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="schoolName"
+                                [(ngModel)]="schoolName" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">School Code</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="code" [(ngModel)]="code"
+                                (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">School Year</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="year" [(ngModel)]="year"
+                                (keydown.space)="$event.preventDefault()" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Office Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="officeEmail"
+                                [(ngModel)]="officeEmail" (keydown.space)="$event.preventDefault()"
+                                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" ngModel
+                                #officeemailref="ngModel" [(ngModel)]="officeEmail" required>
+
+                            <div *ngIf="officeemailref.errors &&(officeemailref.touched || officeemailref.dirty) "
+                                class="aler alert-danger">
+                                <div [hidden]="!officeemailref.errors?.pattern">
+                                    Invalid Email Format
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Offfice Phone Number</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="officePhoneNumber"
+                                [(ngModel)]="officePhoneNumber" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Office Fax Number</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="officeFaxNumber"
+                                [(ngModel)]="officeFaxNumber" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Physical Address</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="physicalAddress"
+                                [(ngModel)]="physicalAddress" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Physical City</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="physicalCity"
+                                [(ngModel)]="physicalCity" (keypress)="lettersOnly($event)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6" >
+                            <label style="font-size: 16px;">Physical District</label>
+                            <br>
+                            <!-- <input type="text" class="text-input form-control" name="status" [(ngModel)]="status" /> -->
+                            <select id="status" name="status"  class="text-input form-control"
+                               [(ngModel)]="physicalDistrict" >
+                                <option *ngFor="let item of districtList" name="physicalDistrict" >{{item.districtName}}</option>
+                            </select> 
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Physical Zip</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="physicalZip"
+                                [(ngModel)]="physicalZip" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <!-- <div class="row">
+                        <div class="col-md-6" >
+                            <label style="font-size: 16px;">Select District</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="status" [(ngModel)]="status" /> 
+                            <select id="status" name="status"  class="text-input form-control"
+                               [(ngModel)]="districtName" >
+                                <option *ngFor="let item of districtList" name="districtName" >{{item.districtName}}</option>
+                            </select> 
+                            
+                        </div>
+                    </div> -->
+                    <br>
+                    <div class="checkbox text-left">
+                        <input type="checkbox" id="rememberMe" [(ngModel)]="isChecked" name="rememberMe" value="true">
+                        <label for="rememberMe" class="remember-checkbox">Same as physical address</label>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing Address</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="mailingAddress"
+                            [disabled]="isChecked"  [(ngModel)]="mailingAddress" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing City</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="mailingCity"
+                            [disabled]="isChecked" [(ngModel)]="mailingCity" (keypress)="lettersOnly($event)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing State</label>
+                            <br>
+                            <input type="text" class="text-input disabled form-control" name="mailingState"
+                                [disabled]="isChecked"  [(ngModel)]="mailingState" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing Zip</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="mailingZip"
+                            [disabled]="isChecked"  [(ngModel)]="mailingZip" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal First Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalFirstName"
+                                [(ngModel)]="principalFirstName" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal Last Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalLastName"
+                                [(ngModel)]="principalLastName" (keypress)="lettersOnly($event)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal Phone Number</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalPhoneNumber"
+                                [(ngModel)]="principalPhoneNumber" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalEmail"
+                                [(ngModel)]="principalEmail" (keydown.space)="$event.preventDefault()"
+                                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" ngModel
+                                #principalEmailref="ngModel" required>
+
+                            <div *ngIf="principalEmailref.errors &&(principalEmailref.touched || principalEmailref.dirty) "
+                                class="aler alert-danger">
+                                <div [hidden]="!principalEmailref.errors?.pattern">
+                                    Invalid Email Format
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelAdd()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="addSchool()">Add</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editSchoolModal" tabindex="-1" role="dialog" aria-labelledby="editSchoolModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="editSchoolModalLabel" style="font-weight: 500">Edit School</h5>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">School Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="schoolName"
+                                [(ngModel)]="schoolName" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">School Code</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="code" [(ngModel)]="code"
+                                (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">School Year</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="year" [(ngModel)]="year"
+                                (keydown.space)="$event.preventDefault()" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Office Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="officeEmail"
+                                [(ngModel)]="officeEmail" (keydown.space)="$event.preventDefault()"
+                                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" ngModel
+                                #officeemailref="ngModel" [(ngModel)]="officeEmail" required>
+
+                            <div *ngIf="officeemailref.errors &&(officeemailref.touched || officeemailref.dirty) "
+                                class="aler alert-danger">
+                                <div [hidden]="!officeemailref.errors?.pattern">
+                                    Invalid Email Format
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Offfice Phone Number</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="officePhoneNumber"
+                                [(ngModel)]="officePhoneNumber" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Office Fax Number</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="officeFaxNumber"
+                                [(ngModel)]="officeFaxNumber" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Physical Address</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="physicalAddress"
+                                [(ngModel)]="physicalAddress" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Physical City</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="physicalCity"
+                                [(ngModel)]="physicalCity" (keypress)="lettersOnly($event)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6" >
+                            <label style="font-size: 16px;">Physical District</label>
+                            <br>
+                            <!-- <input type="text" class="text-input form-control" name="status" [(ngModel)]="status" /> -->
+                            <select id="status" name="status"  class="text-input form-control"
+                               [(ngModel)]="physicalDistrict" >
+                                <option *ngFor="let item of districtList" name="physicalDistrict" >{{item.districtName}}</option>
+                            </select> 
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Physical Zip</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="physicalZip"
+                                [(ngModel)]="physicalZip" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing Address</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="mailingAddress"
+                                [(ngModel)]="mailingAddress" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing City</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="mailingCity"
+                                [(ngModel)]="mailingCity" (keypress)="lettersOnly($event)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing State</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="mailingState"
+                                [(ngModel)]="mailingState" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Mailing Zip</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="mailingZip"
+                                [(ngModel)]="mailingZip" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal First Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalFirstName"
+                                [(ngModel)]="principalFirstName" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal Last Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalLastName"
+                                [(ngModel)]="principalLastName" (keypress)="lettersOnly($event)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal Phone Number</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalPhoneNumber"
+                                [(ngModel)]="principalPhoneNumber" (keydown.space)="$event.preventDefault()" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Principal Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="principalEmail"
+                                [(ngModel)]="principalEmail" (keydown.space)="$event.preventDefault()"
+                                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" ngModel
+                                #principalEmailref="ngModel" [(ngModel)]="officeEmail" required>
+
+                            <div *ngIf="principalEmailref.errors &&(principalEmailref.touched || principalEmailref.dirty) "
+                                class="aler alert-danger">
+                                <div [hidden]="!principalEmailref.errors?.pattern">
+                                    Invalid Email Format
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelEdit()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="editSchool()">Edit</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteSchoolModal" tabindex="-1" role="dialog" aria-labelledby="deleteSchoolModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="deleteSchoolModalLabel" style="font-weight: 500">Delete School</h5>
+                <br>
+                <p>Are you sure want to delete this school?</p>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelDelete()">NO</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="deleteSchool()">Yes</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

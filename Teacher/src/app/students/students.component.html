@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <div class="row top-row" >
+        <div class="col-md-1 w40-p0">
+            <img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png" routerLink="/dashboard">
+        </div>
+        <div class="col-md-6 w40-p0">
+            <img src="../../assets/trackalt-2x.png" class="logo-text">
+        </div>
+        <div class="col-md-5 p-0">
+            <img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+        </div>
+    </div>
+
+	<!-- Middle Content -->
+	<div class="container ps-4">
+		<div class="col-md-8">
+			<p class="table-heading">
+				Attendance Information
+			</p>
+		</div>
+    	<div class="row d-flex justify-content-evenly">
+    		<div class="col-md-5">
+		    	<div class="input-group">
+			    	<span class="" ><strong>Classroom : </strong></span>
+			        <select name="classroomNumber" class="form-select ms-3" id="classroomNumber" [(ngModel)]="classroomNumber">
+			        	<option selected>Open this select menu</option>
+			        	<option>1</option>
+			        	<option>2</option>
+			        	<option>3</option>
+			        	<option>4</option>
+			        </select>
+			    </div>
+			</div>
+			<!-- Date Entry -->
+			<div class="col-md-5">
+		        <div class="form-group">
+		            <div class='input-group date' id='datepicker'>
+		            	<strong>Date: </strong>
+		            	<input type='date' class="form-control ms-3" />
+		            	<span class="input-group-addon">
+		            		<span class="glyphicon glyphicon-calendar"></span>
+		            	</span>
+		            </div>
+		        </div>
+		      <script type="text/javascript">
+		         $(function () {
+		             $('#datepicker').datetimepicker();
+		         });
+		      </script>
+			</div>
+		</div>
+		<table class="table table-striped p-3">
+			<thead>
+				<tr>
+					<th scope="col" style="width: 33.33%">S.NO.</th>
+					<th scope="col" style="width: 33.33%">Name</th>
+					<th scope="col" style="width: 33.33%">Status</th>
+					<th scope="col" style="width: 33.33%">Actions</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="studentInfo && studentInfoList.length > 0; else noData">
+				<tr *ngFor="let student of studentInfoList; let i = index">
+					<td> {{i + 1}} </td>
+					<td> {{student.name}} </td>
+					<td> {{student.status}} </td>
+					<td> Action </td>
+				</tr>
+			</tbody>
+			<ng-template #noData>
+				<p class="text-danger pt-3 ps-3">
+					No Data Found!
+				</p>
+			</ng-template>
+		</table>
+    </div>
+
+
+	<div class="fixed-bottom">
+        <img src="../../assets/Bottom Triangle.png" class="footer-image">
+    </div>
+    <div class="fixed-bottom row">
+
+        <div class="col-md-2 w20-p0">
+        </div>
+        <div class="col-md-8 text-center w60-p0">
+            <p class="user-info">Welcome {{userName}} !!</p>
+        </div>
+        <div class="col-md-2 text-center w20-p0">
+            <!-- <img src="../../assets/Profile Icon-2x.png" class="profile-icon" (click)="logout()" data-toggle="tooltip"
+                        data-placement="top" title="Log Out">
+                    <p style="color: white;">Profile</p> -->
+
+            <div class="w3-dropdown-hover">
+                <img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
+                    data-placement="top" title="Log Out">
+                <p style="color: white;">Profile</p>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <br> -->
+    <!-- <br> -->
+</div>

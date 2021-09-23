@@ -1,0 +1,67 @@
+.container-fluid{ background-image: url('../../assets/BG.png'); min-height: 100vh; overflow: hidden;}
+.top-row{ height: 140px; }
+.logo-image{ height: 100px; }
+.logo-text{ width: 150px; margin: 40px 0px 0px 20px; }
+.title{ color: white; padding: 35px 10px; }
+.triangle-1{ height: 260px; float: right; width: 350px; } 
+.form form{ background: #473658;; padding: 25px 50px; text-align: center; padding-bottom: 1px; width: 40%;
+     margin: 0% auto; z-index: 10000; position: relative;color: white;
+    opacity: 0.8; border-radius: 5px; border: 1px solid #cd5fbf;}
+.login-text{ font-size: 22px; }
+.input-field{ border-radius: 0; border: 1px solid; text-align: center; font-style: italic;}
+.input-field:focus{ box-shadow: none; }
+.submit-btn{ width: 103%; margin-left: -6px; margin-top: 15px;}
+.submit-button{ background-image: url('../../assets/Log\ In\ Button-2x.png'); background-size: cover; height: 50px; 
+    width: 103%; margin-left: -6px; margin-top: 15px; cursor: pointer;}
+.submit-button p{ color: white; padding-top: 10px; font-size: 18px; transform: translateY(15%)}
+.centered { position: absolute; color: white; top: 58%; left: 54%; transform: translate(-50%, -50%); }
+.p-0{ padding: 0; }
+.remember-checkbox{ font-size: 13px; }
+#rememberMe{ position: relative; top: 2px; right: 5px;}
+.forgot-password{ text-align: right; font-size: 13px; color: #ff9df3; margin-left: 58px; cursor: pointer;}
+.checkbox{ text-align: left; padding-left: 18px; }
+.mt-5{ margin-top: 5px !important; }
+.sign-up-link p{ font-size: 13px; }
+.sign-up-link span{ color: #ff9df3; font-size: 15px; cursor: pointer; }
+.sign-up-link span:hover{ text-decoration: underline; }
+// .footer{ height: 80px; width: 100%; }
+.fixed-bottom{ background: #473658; height: 65px; width: 102%; }
+// .fixed-bottom div{ position: relative; top: 40px; right: 75px;}
+.menu-icon{ height: 20px; margin-top: 25px; margin-left: 20px; }
+.user-info{ color: white; padding-top: 25px; }
+.profile-icon{ height: 40px; margin-top: 12px; margin-left: 80px;}
+.validation{ font-size: 14px; margin-top: -21px; }
+.footer-image{ height: 190px; width: 700px; position: relative; bottom: 150px; right: 100px; }
+
+@media(max-width: 766px){
+    .triangle-1{ position: relative; bottom: 80px; height: 230px; width: 220px;}
+    .logo-image{ height: 75px; }
+    .logo-text{margin: 32px 0px 0px -55px; width: 90px;}
+    .login-text{ font-size: 20px; }
+    .w40-p0{ padding: 0; width: 40%; }
+    .form form{ width: 90%; padding: 10px 25px; margin: -10% auto; }
+    .fixed-bottom{ height: 65px; }
+    .footer-image{ height: 145px; width: 465px; position: relative; bottom: 110px; right: 65px;}
+    .text{ font-size: 16px;}
+    .x-mark{ height: 16px; }
+    .forgot-form h5{ font-size: 12px; }
+    label{font-size: 14px;}
+    .input-field{ line-height: 0.8; margin-bottom: 0px; }
+    .submit-button{ padding-top: 2px; font-size: 16px; }
+    .forgot-password{ margin-left: 0px; }
+}
+
+
+@media(width: 414px){
+    .form form{ margin: 12% auto; opacity: 0.8;}
+}
+
+@media(min-width: 768px) and (max-width: 1020px){
+    .logo-image{ height: 75px; }
+    .logo-text{ margin: 32px 0px 0px 25px; width: 120px;}
+    .triangle-1{ height: 220px; width: 330px;}
+    .form form{ padding: 20px 25px; width: 56%; margin: -5% auto; }
+    .fixed-bottom{ height: 55px; }
+    .footer-image{height: 150px; width: 600px; position: relative; bottom: 120px; right: 80px;}
+    .sign-up-link p{ margin-bottom: 0px; }
+}

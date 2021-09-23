@@ -1,0 +1,100 @@
+<div class="container-fluid">
+	<div class="row top-row" routerLink="/dashboard">
+		<div class="col-md-1 w40-p0">
+			<img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png">
+		</div>
+		<div class="col-md-6 w40-p0">
+			<img src="../../assets/trackalt-2x.png" class="logo-text">
+		</div>
+		<div class="col-md-5 p-0">
+			<img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+		</div>
+	</div>
+
+	<div class="buttons-container">
+
+		<!-- show buttons if profile is completed -->
+		<div class="buttons-row" *ngIf="profileComplete">
+			<div class="button-box">
+				<div class="circle" style="background-image: url('../../assets/Button 1-2x.png');">
+					<img src="../../assets/Button 1 Attendance-2x.png" class="button-icon">
+				</div>
+				<p class="button-title one" style="cursor: pointer" routerLink="/attendance-info">
+					Absent/Tardy/Dismissal Change
+				</p>
+			</div>
+			<div class="button-box">
+				<div class="circle" style="background-image: url('../../assets/Button 2-2x.png');">
+					<img src="../../assets/Button 2 Students icon-2x.png" class="button-icon">
+				</div>
+				<p class="button-title two" style="cursor: pointer" routerLink="/child-information">
+					Add/Update child(s) information
+				</p>
+			</div>
+		</div>
+
+		<!-- else show profile completion form -->
+		<div class="buttons-row" *ngIf="!profileComplete">
+			<div class="form">
+				<form #f="ngForm" role="form" class="login-form">
+					<p class="login-text">Let's finish setting up your account</p>
+					<div *ngIf="!user.firstName">
+						<input type="text" class="form-control input-field" placeholder="Enter Your First Name"
+							name="firstName" [(ngModel)]="firstName" (keydown.space)="$event.preventDefault()" (keypress)="lettersOnly($event)" />
+						<br>
+					</div>
+
+					<div *ngIf="!user.lastName">
+						<!-- <input type="text" class="form-control input-field" placeholder="Enter Your Last Name"
+							name="lastName" [(ngModel)]="lastName" (keydown.space)="$event.preventDefault()" (keypress)="lettersOnly($event)" /> -->
+							<input type="text" class="form-control input-field" placeholder="Enter Your Last Name"
+							name="lastName" [(ngModel)]="lastName" (keydown.space)="$event.preventDefault()" (keypress)="lettersOnly($event)" />
+					</div>
+					<br>
+					<div *ngIf="!user.phoneNumber">
+						<input type="text" class="form-control input-field" placeholder="Enter Your Phone Number (1234567890)"
+						pattern="[^0a-zA-Z\D][0-9]{9}$" name="phoneNumber" (keydown.space)="$event.preventDefault()"
+						ngModel #phoneref="ngModel" [(ngModel)]="phoneNumber" />
+
+						<!-- Errors -->
+						<div class="text-danger" *ngIf="phoneref.errors && (phoneref.touched || phoneref.dirty)">
+							<span class="validation" [hidden]="!phoneref.errors?.pattern">
+								Phone Number is invalid
+							</span>
+						</div>
+					</div>
+					<input type="submit" class="submit-button text-center" (click)="completeProfile()" value="Submit">
+					<br>
+				</form>
+
+			</div>
+		</div>
+		<br>
+
+	</div>
+
+	<div class="fixed-bottom">
+		<img src="../../assets/Bottom Triangle.png" class="footer-image">
+	</div>
+	<div class="fixed-bottom row">
+
+		<div class="col-md-2 w20-p0">
+			<img src="../../assets/Footer Menu Link-2x.png" class="menu-icon">
+		</div>
+		<div class="col-md-8 text-center w60-p0">
+			<!-- Get userName from localStorage -->
+			<p class="user-info">Welcome {{userName}} !!</p>
+		</div>
+		<div class="col-md-2 text-center w20-p0">
+			<div class="w3-dropdown-hover">
+				<img src="../../assets/Profile Icon-2x.png" class="profile-icon">
+				<p style="color: white;">Profile</p>
+				<div class="w3-dropdown-content w3-bar-block w3-border">
+					<a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <br> -->
+	<!-- <br> -->
+</div>

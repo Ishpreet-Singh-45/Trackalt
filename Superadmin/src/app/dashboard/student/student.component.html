@@ -1,0 +1,285 @@
+<div class="container-fluid">
+    <div class="row top-row">
+        <div class="col-md-1 w40-p0">
+            <img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png" (click)="home()">
+        </div>
+        <div class="col-md-6 w40-p0">
+            <img src="../../assets/trackalt-2x.png" class="logo-text" (click)="home()">
+        </div>
+        <div class="col-md-5 p-0">
+            <img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+        </div>
+    </div>
+
+    <div class="distictListContainer">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 8%;">S.NO.</th>
+                    <th scope="col">RFID</th>
+                    <th scope="col">GUARDIAN NAME</th>
+                    <th scope="col">GUARDIAN EMAIL</th>
+                    <!-- <th scope="col">CURRENT SCHOOL</th> -->
+                    <th scope="col">TEACHER</th>
+                    <th scope="col">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="studentList && studentList.length > 0">
+                <tr *ngFor="let item of studentList; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.rfid}}</td>
+                    <td>{{item.guardianFirstName.charAt(0).toUpperCase() + item.guardianFirstName.slice(1)}}
+                        {{item.guardianLastName.charAt(0).toUpperCase() + item.guardianLastName.slice(1)}}</td>
+                    <td>{{item.guardianEmail}}</td>
+                    <!-- <td>{{item.currentSchool}}</td> -->
+                    <td>{{item.teacher}} </td>
+                    <td class="text-right pull-right">
+                        <button class="btn btn-sm mar-5-left" title="Edit Department" (click)="editStudentData(item)"
+                            style="padding-left: 5px;">
+                            <img src="../../../assets/edit (2).png">
+                        </button>
+                        <!-- <button *ngIf="item.status == 'Active'" class="btn btn-sm mar-5-left" title="Edit Department"
+                            (click)="disableTeacher(item)">
+                            <img src="../../../assets/cancel.png">
+                        </button>
+                        <button *ngIf="item.status == 'Inactive'" class="btn btn-sm mar-5-left" title="Edit Department"
+                            (click)="enableTeacher(item)">
+                            <img src="../../../assets/checked.png">
+                        </button> -->
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="studentList && studentList.length == 0">
+                <p class="text-center no_data"> No Data Found!</p>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fixed-bottom">
+        <img src="../../assets/Bottom Triangle.png" class="footer-image">
+        <button type="button" class="btn btn-sm plus-icon" (click)="openAddModal()" data-toggle="modal"
+            data-target="#addStudentModal">
+            <img src="../../../assets/plus.png" data-toggle="tooltip" title="Add new record">
+        </button>
+    </div>
+    <div class="fixed-bottom row">
+
+        <div class="col-md-2 w20-p0">
+            <!-- <img src="../../assets/Footer Menu Link-2x.png" class="menu-icon"> -->
+        </div>
+        <div class="col-md-8 text-center w60-p0">
+            <p class="user-info">Welcome {{userName}} !!</p>
+
+        </div>
+        <div class="col-md-2 text-center w20-p0">
+            <div class="w3-dropdown-hover">
+                <img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
+                    data-placement="top" title="Log Out">
+                <p style="color: white;">Profile</p>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="margin: 2% 22%;">
+        <div class="modal-content" style="width: 145%;">
+            <div class="modal-body">
+                <h5 class="modal-title" id="addStudentModalLabel" style="font-weight: 500">Add Student</h5>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">RFID</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="rfid" [(ngModel)]="rfid" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Guardian First Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="guardianFirstName"
+                                [(ngModel)]="guardianFirstName" onkeypress="return /[a-z]/i.test(event.key)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Guardian Last Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="guardianLastName"
+                                [(ngModel)]="guardianLastName" onkeypress="return /[a-z]/i.test(event.key)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Guardian Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="guardianEmail"
+                                [(ngModel)]="guardianEmail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+                                ngModel #guardianemailref="ngModel" />
+                            <div *ngIf="guardianemailref.errors &&(guardianemailref.touched || guardianemailref.dirty) "
+                                class="aler alert-danger">
+                                <div [hidden]="!guardianemailref.errors?.pattern">
+                                    Invalid Email Format
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Current School</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="currentSchool"
+                                [(ngModel)]="currentSchool" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Teacher</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="teacher" [(ngModel)]="teacher"
+                                onkeypress="return /[a-z]/i.test(event.key)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Student Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="studentEmail"
+                                [(ngModel)]="studentEmail" #studentEmailref="ngModel" />
+                            <div *ngIf="studentEmailref.errors &&(studentEmailref.touched || studentEmailref.dirty) "
+                                class="aler alert-danger">
+                                <div [hidden]="!studentEmailref.errors?.pattern">
+                                    Invalid Email Format
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-buttons row">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelAdd()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal" (click)="addStudent()"
+                            [disabled]="!rfid || !guardianFirstName || !guardianLastName 
+                            || !guardianemailref.valid || !currentSchool || !teacher || !studentEmailref.valid">Add</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog" aria-labelledby="editStudentModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="margin: 2% 22%;">
+        <div class="modal-content" style="width: 145%;">
+            <div class="modal-body">
+                <h5 class="modal-title" id="editStudentModalLabel" style="font-weight: 500">Edit Student</h5>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">RFID</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="rfid" [(ngModel)]="rfid" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Guardian First Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="guardianFirstName"
+                                [(ngModel)]="guardianFirstName" onkeypress="return /[a-z]/i.test(event.key)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Guardian Last Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="guardianLastName"
+                                [(ngModel)]="guardianLastName" onkeypress="return /[a-z]/i.test(event.key)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Guardian Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="guardianEmail"
+                                [(ngModel)]="guardianEmail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+                                ngModel #guardianemailref="ngModel" />
+                            <div *ngIf="guardianemailref.errors &&(guardianemailref.touched || guardianemailref.dirty) "
+                                class="aler alert-danger">
+                                <div [hidden]="!guardianemailref.errors?.pattern">
+                                    Invalid Email Format
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Current School</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="currentSchool"
+                                [(ngModel)]="currentSchool" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Teacher</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="teacher" [(ngModel)]="teacher"
+                                onkeypress="return /[a-z]/i.test(event.key)" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Student Email</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="studentEmail"
+                                [(ngModel)]="studentEmail" #studentEmailref="ngModel" />
+                            <div *ngIf="studentEmailref.errors &&(studentEmailref.touched || studentEmailref.dirty) "
+                                class="aler alert-danger"></div>
+                            <div [hidden]="!studentEmailref.errors?.pattern">
+                                Invalid Email Format
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelEdit()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal" (click)="editStudent()"
+                            [disabled]="!rfid || !guardianFirstName || !guardianLastName 
+                            || !guardianemailref.valid || !currentSchool || !teacher || !studentEmailref.valid">Edit</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteStudentModal" tabindex="-1" role="dialog" aria-labelledby="deleteStudentModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="deleteStudentModalLabel" style="font-weight: 500">Delete Student</h5>
+                <br>
+                <p>Are you sure want to delete this teacher?</p>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelAdd()">NO</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="deleteStudent()">Yes</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

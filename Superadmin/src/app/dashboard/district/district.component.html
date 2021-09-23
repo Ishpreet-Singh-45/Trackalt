@@ -1,0 +1,192 @@
+<div class="container-fluid">
+    <div class="row top-row">
+        <div class="col-md-1 w40-p0">
+            <img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png" (click)="home()">
+        </div>
+        <div class="col-md-6 w40-p0">
+            <img src="../../assets/trackalt-2x.png" class="logo-text" (click)="home()">
+        </div>
+        <div class="col-md-5 p-0">
+            <img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+        </div>
+    </div>
+
+
+    <div class="distictListContainer">
+        <div class="row" style="padding: 8px 6px;">
+            <div class="col-md-8">
+                <p class="table-heading">Distrcit Information</p>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group md-form form-sm form-1 pl-0 searchBar">
+                    <!-- <div class="input-group-prepend">
+                        <span class="input-group-text cyan lighten-2 search-icon" id="basic-text1" (click)="search()"><i
+                                class="fas fa-search text-white" aria-hidden="true"></i></span>
+                    </div> -->
+                    <input class="form-control my-0 py-1 search-bar" type="search" placeholder="Search by Name"
+                        aria-label="Search" (keypress)="search()" name="searchText" [(ngModel)]="searchText">
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 12%;">S.NO.</th>
+                    <th scope="col" style="width: 25%;">DISTRICT</th>
+                    <th scope="col">CITY</th>
+                    <th scope="col">CREATED AT</th>
+                    <th scope="col">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="districtList && districtList.length > 0">
+                <tr *ngFor="let item of districtList; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.districtName}}</td>
+                    <td>{{item.city}}</td>
+                    <td>{{item.createdAt.split('T')[0] | date: 'MM/dd/yyyy'}}</td>
+                    <td class="text-right pull-right">
+                        <button class="btn btn-sm mar-5-left" title="Edit Department" (click)="editDistrictData(item)"
+                            style="padding-left: 5px;">
+                            <img src="../../../assets/edit (2).png">
+                        </button>
+                        <button class="btn btn-sm mar-5-left" title="Edit Department"
+                            (click)="deleteDistrictData(item)">
+                            <img src="../../../assets/delete (3).png">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="districtList && districtList.length == 0">
+                <p class="text-center no_data"> No Data Found!</p>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fixed-bottom">
+        <img src="../../assets/Bottom Triangle.png" class="footer-image">
+        <button type="button" class="btn btn-sm plus-icon" (click)="openAddModal()" data-toggle="modal"
+            data-target="#addDistrictModal">
+            <img src="../../../assets/plus.png" data-toggle="tooltip" title="Add new record">
+        </button>
+    </div>
+    <div class="fixed-bottom row">
+
+        <div class="col-md-2 w20-p0">
+            <!-- <img src="../../assets/Footer Menu Link-2x.png" class="menu-icon"> -->
+        </div>
+        <div class="col-md-8 text-center w60-p0">
+            <p class="user-info">Welcome {{userName}} !!</p>
+            <p class="user-info">{{role}}</p>
+        </div>
+        <div class="col-md-2 text-center w20-p0">
+            <!-- <img src="../../assets/Profile Icon-2x.png" class="profile-icon" (click)="logout()" data-toggle="tooltip"
+                data-placement="top" title="Log Out">
+            <p style="color: white;">Profile</p> -->
+
+            <div class="w3-dropdown-hover">
+                <img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
+                    data-placement="top" title="Log Out">
+                <p style="color: white;">Profile</p>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addDistrictModal" tabindex="-1" role="dialog" aria-labelledby="addDistrictModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="addDistrictModalLabel" style="font-weight: 500">Add District</h5>
+               
+                <form #f="ngForm" class="add-form" role="form">
+                    <div>
+                        <label style="font-size: 16px;">City</label>
+                        <br>
+                        <input type="text" class="text-input form-control" name="city" [(ngModel)]="city"
+                            (keypress)="lettersOnly($event)" />
+                    </div>
+                    <br>
+                    <div>
+                        <label style="font-size: 16px;">District</label>
+                        <span style="color:#ffffff; padding-left: 4px;"><sup>*</sup></span>
+                        <br>
+                        <input type="text" class="text-input form-control" name="district" [(ngModel)]="district"
+                            (keypress)="lettersOnly($event)" />
+                    </div>
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelAdd()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal" (click)="addDistrict()"
+                            [disabled]="!district || !city ">Add</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editDistrictModal" tabindex="-1" role="dialog" aria-labelledby="editDistrictModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="editDistrictModalLabel" style="font-weight: 500">Edit District</h5>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div>
+                        <label style="font-size: 16px;">District</label>
+                        <br>
+                        <input type="text" class="text-input form-control" name="district" [(ngModel)]="district"
+                            (keypress)="lettersOnly($event)" />
+                    </div>
+                    <br>
+                    <div>
+                        <label style="font-size: 16px;">City</label>
+                        <br>
+                        <input type="text" class="text-input form-control" name="city" [(ngModel)]="city"
+                            (keypress)="lettersOnly($event)" />
+                    </div>
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelEdit()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="editDistrict()" [disabled]="!district || !city">Edit</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteDistrictModal" tabindex="-1" role="dialog" aria-labelledby="deleteDistrictModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="deleteDistrictModalLabel" style="font-weight: 500">Delete District</h5>
+                <br>
+                <p>Are you sure want to delete this district?</p>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelDelete()">NO</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="deleteDistrict()">Yes</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,314 @@
+<div class="container-fluid">
+    <div class="row top-row">
+        <div class="col-md-1 w40-p0">
+            <img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png" (click)="home()">
+        </div>
+        <div class="col-md-6 w40-p0">
+            <img src="../../assets/trackalt-2x.png" class="logo-text" (click)="home()">
+        </div>
+        <div class="col-md-5 p-0">
+            <img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+        </div>
+    </div>
+
+    <div class="distictListContainer">
+        <div class="row" style="width: 100%; margin-left: 0px;">
+            <div class="col-md-11" style="padding: 0px;">
+                <h5 class="addFormHeading">District Calendar Information</h5>
+            </div>
+            <div class="col-md-1" style="padding: 10px 0px;">
+                <button type="button" class="btn btn-sm plus-icon" (click)="openAddModal()" data-toggle="modal"
+                    data-target="#addDistrictModal">
+                    <img src="../../../assets/plus.png" class="backBtn" data-toggle="tooltip" title="Add new record">
+                </button>
+            </div>
+        </div>
+
+        <div style="max-height: 150px; overflow-y: auto;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 12%;">S.NO.</th>
+                        <th scope="col" style="width: 25%;">CALENDAR NAME</th>
+                        <th scope="col">START</th>
+                        <th scope="col">END</th>
+                        <th scope="col">STATUS</th>
+                    </tr>
+
+                </thead>
+                <tbody *ngIf="districtCalendarList && districtCalendarList.length > 0">
+                    <tr *ngFor="let item of districtCalendarList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td *ngIf="item.schoolCalendraName">{{item.schoolCalendraName}}</td>
+                        <td *ngIf="!item.schoolCalendraName">N/A</td>
+
+                        <td *ngIf="item.startDate">{{item.startDate.split('T')[0] | date: 'MM/dd/yyyy'}}</td>
+                        <td *ngIf="!item.startDate">N/A</td>
+
+                        <td *ngIf="item.endDate">{{item.endDate.split('T')[0] | date: 'MM/dd/yyyy'}}</td>
+                        <td *ngIf="!item.endDate">N/A</td>
+
+                        <td *ngIf="item.status">{{item.status}}</td>
+                        <td *ngIf="!item.status">N/A</td>
+
+                    </tr>
+                </tbody>
+                <tbody *ngIf="districtCalendarList && districtCalendarList.length == 0">
+                    <p class="text-center no_data"> No Data Found!</p>
+                </tbody>
+            </table>
+        </div>
+        <div class="row" style="width: 100%; margin-left: 0px;">
+            <div class="col-md-11" style="padding: 0px;">
+                <h5 class="addFormHeading">Holiday Dates</h5>
+            </div>
+            <div class="col-md-1" style="padding: 10px 0px;">
+                <button type="button" class="btn btn-sm plus-icon" (click)="openAddHolidayModal()" data-toggle="modal"
+                    data-target="#addHolidayModal" style="bottom: 9px;">
+                    <img src="../../../assets/plus.png" class="backBtn" data-toggle="tooltip" title="Add new record">
+                </button>
+            </div>
+        </div>
+        <div style="max-height: 200px;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 12%;">S.NO.</th>
+                        <th scope="col" style="width: 25%;">CALENDAR NAME</th>
+                        <th scope="col">HOLIDAY START</th>
+                        <th scope="col">HOLIDAY END</th>
+                    </tr>
+
+                </thead>
+                <tbody *ngIf="holidayCalendarList && holidayCalendarList.length > 0">
+                    <tr *ngFor="let item of holidayCalendarList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td *ngIf="item.schoolName">{{item.schoolName}}</td>
+                        <td *ngIf="!item.schoolName">N/A</td>
+                        
+                        <td *ngIf="item.holidayStartDate">{{item.holidayStartDate.split('T')[0] | date: 'MM/dd/yyyy'  }}
+                        </td>
+                        <td *ngIf="!item.holidayStartDate">N/A</td>
+
+                        <td *ngIf="item.holidayEndDate">{{item.holidayEndDate.split('T')[0] | date: 'MM/dd/yyyy'  }}</td>
+                        <td *ngIf="!item.holidayEndDate">N/A</td>
+
+                    </tr>
+                </tbody>
+                <tbody *ngIf="holidayCalendarList && holidayCalendarList.length == 0">
+                    <p class="text-center no_data"> No Data Found!</p>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="fixed-bottom">
+        <img src="../../assets/Bottom Triangle.png" class="footer-image">
+
+    </div>
+    <div class="fixed-bottom row">
+
+        <div class="col-md-2 w20-p0">
+            <!-- <img src="../../assets/Footer Menu Link-2x.png" class="menu-icon"> -->
+        </div>
+        <div class="col-md-8 text-center w60-p0">
+            <p class="user-info">Welcome {{userName}} !!</p>
+        </div>
+        <div class="col-md-2 text-center w20-p0">
+            <!-- <img src="../../assets/Profile Icon-2x.png" class="profile-icon" (click)="logout()" data-toggle="tooltip"
+                data-placement="top" title="Log Out">
+            <p style="color: white;">Profile</p> -->
+
+            <div class="w3-dropdown-hover">
+                <img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
+                    data-placement="top" title="Log Out">
+                <p style="color: white;">Profile</p>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add District Calendar Modal -->
+<div class="modal fade" id="addDistrictModal" tabindex="-1" role="dialog" aria-labelledby="addDistrictModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="addDistrictModalLabel" style="font-weight: 500">Add District Calendar</h5>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">District Calendar Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="schoolCalendraName"
+                                [(ngModel)]="schoolCalendraName" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Start Date</label>
+                            <br>
+                            <input type="date" class="text-input form-control" name="startDate"
+                                [(ngModel)]="startDate" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">End Date</label>
+                            <br>
+                            <input type="date" class="text-input form-control" name="endDate" [(ngModel)]="endDate">
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Status</label>
+                            <br>
+                            <!-- <input type="text" class="text-input form-control" name="status" [(ngModel)]="status" /> -->
+                            <select id="status" name="status" [(ngModel)]="status" class="text-input form-control"
+                                value="status">
+                                <option value="active">Active</option>
+                                <option value="closed">Closed</option>
+                                <option value="open">Open</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelAdd()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal" (click)="addDistrict()"
+                            [disabled]="!schoolCalendraName || !startDate || !endDate || !status">Add</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit District Calendar Modal -->
+<div class="modal fade" id="editDistrictModal" tabindex="-1" role="dialog" aria-labelledby="editDistrictModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="editDistrictModalLabel" style="font-weight: 500">Edit District</h5>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">District Calendar Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="schoolCalendraName"
+                                [(ngModel)]="schoolCalendraName" (keypress)="lettersOnly($event)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Start Date</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="startDate"
+                                [(ngModel)]="startDate" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">End Date</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="endDate" [(ngModel)]="endDate">
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Status</label>
+                            <br>
+                            <select id="status" name="status" [(ngModel)]="status" class="text-input form-control"
+                                value="status">
+                                <option value="active">Active</option>
+                                <option value="closed">Closed</option>
+                                <option value="open">Open</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelEdit()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="editDistrict()">Edit</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete District Calendar Modal -->
+<div class="modal fade" id="deleteDistrictModal" tabindex="-1" role="dialog" aria-labelledby="deleteDistrictModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="deleteDistrictModalLabel" style="font-weight: 500">Delete District</h5>
+                <br>
+                <p>Are you sure want to delete this district?</p>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelDelete()">NO</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal"
+                            (click)="deleteDistrict()">Yes</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Holiday Calendar Modal -->
+<div class="modal fade" id="addHolidayModal" tabindex="-1" role="dialog" aria-labelledby="addHolidayModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="modal-title" id="addHolidayModalLabel" style="font-weight: 500">Add Holiday</h5>
+                <br>
+                <form #f="ngForm" class="add-form" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">District Calendar Name</label>
+                            <br>
+                            <input type="text" class="text-input form-control" name="districtHolidayName"
+                                [(ngModel)]="districtHolidayName" />
+                        </div>
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Holiday Start Date</label>
+                            <br>
+                            <input type="date" class="text-input form-control" name="holidayStartDate"
+                                [(ngModel)]="holidayStartDate" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label style="font-size: 16px;">Holiday End Date</label>
+                            <br>
+                            <input type="date" class="text-input form-control" name="holidayEndDate"
+                                [(ngModel)]="holidayEndDate">
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-light cancel-btn" data-dismiss="modal"
+                            (click)="cancelAddHoliday()">Cancel</button>
+                        <button type="submit" class="btn btn-light add-btn" data-dismiss="modal" (click)="addHoliday()"
+                            [disabled]="!districtHolidayName || !holidayStartDate || !holidayEndDate">Add</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

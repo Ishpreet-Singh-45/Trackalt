@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="row top-row" routerLink="/dashboard">
+        <div class="col-md-1 w40-p0">
+            <img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png">
+        </div>
+        <div class="col-md-6">
+            <img src="../../assets/trackalt-2x.png" class="logo-text">
+        </div>
+        <div class="col-md-5 p-0">
+            <img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+        </div>
+    </div>
+
+    <div class="buttons-container">
+        <div class="buttons-row">
+            <div class="button-box clickable" routerLink="/attendance">
+                <div class="circle" style="background-image: url('../../assets/Button 1-2x.png');">
+                    <img src="../../assets/Button 1 Attendance-2x.png" class="button-icon">
+                </div>
+                <p class="button-title one">Attendance</p>
+            </div>
+
+            <div class="button-box clickable" routerLink="/students">
+                <div class="circle" style="background-image: url('../../assets/Button 2-2x.png');">
+                    <img src="../../assets/Button 2 Students icon-2x.png" class="button-icon">
+                </div>
+                <p class="button-title two">Students</p>
+            </div>
+            <!-- <div class="button-box">
+                <div class="circle" style="background-image: url('../../assets/Button 3-2x.png');">
+                    <img src="../../assets/Button 3 Teacher Icon-2x.png" class="button-icon">
+                </div>
+                <p class="button-title three">School Setup/Edit</p>
+            </div> -->
+        </div>
+        <br>
+        <div class="buttons-row">
+            <div class="button-box clickable" routerLink="/reporting">
+                <div class="circle" style="background-image: url('../../assets/Button 4-2x.png');">
+                    <img src="../../assets/Button 4 Reports Icon-2x.png" class="button-icon">
+                </div>
+                <p class="button-title sixth">
+					Reporting
+				</p>
+            </div>
+            <div class="button-box clickable" routerLink="/rfid-lookup">
+                <div class="circle" style="background-image: url('../../assets/Button 6 Tag Lookup Icon-2x.png');">
+                    <img src="../../assets/RFID Lookup-2x.png" class="button-icon">
+                </div>
+                <p class="button-title fourth">
+					RFID Lookup
+				</p>
+            </div>
+            <!-- <div class="button-box">
+                <div class="circle" style="background-image: url('../../assets/Button 5 Admin Icon-2x.png');">
+                    <img src="../../assets/admin-2x.png" class="button-icon">
+                </div>
+                <p class="button-title fifth">User Setup/Edit</p>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="fixed-bottom">
+        <img src="../../assets/Bottom Triangle.png" class="footer-image">
+    </div>
+    <div class="fixed-bottom row">
+
+        <div class="col-md-2 w20-p0">
+        </div>
+        <div class="col-md-8 text-center w60-p0">
+            <p class="user-info">Welcome {{userName}} !!</p>
+        </div>
+        <div class="col-md-2 text-center w20-p0">
+            <!-- <img src="../../assets/Profile Icon-2x.png" class="profile-icon" (click)="logout()" data-toggle="tooltip"
+                        data-placement="top" title="Log Out">
+                    <p style="color: white;">Profile</p> -->
+
+            <div class="w3-dropdown-hover">
+                <img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
+                    data-placement="top" title="Log Out">
+                <p style="color: white;">Profile</p>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <br> -->
+    <!-- <br> -->
+</div>

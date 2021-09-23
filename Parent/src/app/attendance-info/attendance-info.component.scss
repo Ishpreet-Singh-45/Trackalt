@@ -1,0 +1,204 @@
+
+.container-fluid
+{
+	background-image: url("../../assets/BG.png");
+	min-height: 100vh;
+	overflow: hidden;
+}
+.top-row
+{
+	height: 140px;
+}
+.logo-image
+{
+	height: 100px;
+	cursor: pointer;
+}
+.logo-text
+{
+	width: 150px;
+	cursor: pointer;
+	margin: 40px 0px 0px 20px;
+	cursor: pointer;
+}
+.triangle-1
+{
+	position: relative;
+	height: 260px;
+	float: right;
+	width: 350px;
+	z-index: 1;
+}
+
+
+.childInfoContainer
+{
+	position: relative;
+	background-color: #fff;
+	z-index: 1;
+	max-height: 80%;
+	width: 70%;
+	color: #000;
+}
+.table-heading
+{
+	color: #000;
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+
+
+.w3-dropdown-content
+{
+	color: #d44092;
+	font-weight: 600;
+	margin-left: 0%;
+	position: relative;
+	bottom: 108px;
+	min-width: 80px;
+}
+.w3-button:hover
+{
+	color: #d54495 !important;
+	background-color: #f3e1f1 !important;
+}
+.w3-dropdown-hover:first-child, .w3-dropdown-click:hover
+{
+	background-color: transparent !important;
+}
+.fixed-bottom
+{
+	background: #473658;
+	height: 65px;
+	width: 102%;
+}
+.menu-icon
+{
+	height: 20px;
+	margin-top: 25px;
+	margin-left: 20px;
+}
+.user-info
+{
+	color: white;
+	padding-top: 25px;
+}
+.profile-icon
+{
+	height: 30px;
+	margin-top: 12px;
+	cursor: pointer;
+}
+.footer-image
+{
+	height: 190px;
+	width: 700px;
+	position: relative;
+	bottom: 150px;
+	right: 100px;
+}
+
+
+@media (max-width: 766px)
+{
+	.triangle-1
+	{
+		position: relative;
+		bottom: 80px;
+		height: 230px;
+		width: 220px;
+		z-index: -1;
+	}
+	.logo-image
+	{
+		height: 75px;
+	}
+	.logo-text
+	{
+		margin: 32px 0px 0px -55px;
+		width: 90px;
+	}
+	.fixed-bottom
+	{
+		height: 55px;
+	}
+	.w40-p0
+	{
+		padding: 0;
+		width: 40%;
+	}
+	.footer-image
+	{
+		height: 145px;
+		width: 465px;
+		position: relative;
+		bottom: 110px;
+		right: 65px;
+	}
+	.w20-p0
+	{
+		width: 20%;
+		padding: 0;
+	}
+	.w60-p0
+	{
+		width: 60%;
+		padding: 0;
+	}
+	.profile-icon
+	{
+		height: 16px;
+	}
+	.menu-icon
+	{
+		margin-top: 20px;
+		margin-left: 25px;
+	}
+	.user-info
+	{
+		padding-top: 20px;
+	}
+}
+
+@media (width: 414px)
+{
+	.buttons-container
+	{
+		margin: 50% 7%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1020px)
+{
+	.logo-image
+	{
+		height: 75px;
+	}
+	.logo-text
+	{
+		margin: 32px 0px 0px 25px;
+		width: 120px;
+	}
+	.triangle-1
+	{
+		height: 220px;
+		width: 330px;
+	}
+	.fixed-bottom
+	{
+		height: 60px;
+	}
+	.footer-image
+	{
+		height: 150px;
+		width: 600px;
+		position: relative;
+		bottom: 120px;
+		right: 80px;
+	}
+	.profile-icon
+	{
+		height: 24px;
+	}
+}

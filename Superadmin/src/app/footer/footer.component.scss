@@ -1,0 +1,69 @@
+.container-fluid{ background-image: url('../../assets/BG.png'); min-height: 100vh; overflow: hidden;}
+.top-row{ height: 140px; }
+.logo-image{ height: 100px; cursor: pointer;}
+.logo-text{ width: 150px; margin: 40px 0px 0px 20px; }
+.title{ color: white; padding: 35px 10px; }
+.triangle-1{ height: 260px; float: right; width: 350px; } 
+.buttons-container{ margin: -1% 20%; }
+.w3-dropdown-content{ color: #d44092; font-weight: 600; margin-left: 0%; position: relative; bottom: 108px; min-width: 80px;}
+.w3-button:hover{ color: #d54495 !important; background-color: #f3e1f1 !important;}
+.w3-dropdown-hover:first-child, .w3-dropdown-click:hover {background-color: transparent !important;}
+.buttons-row{ display: flex; }
+.button-image{ background-image: url('../../assets/Button\ Box\ 3-2x.png'); }
+.button-box{ background-color: #473658; text-align: center; height: 185px; width: 185px; border-radius: 10px;
+    box-shadow: 5px 10px 15px 0px #101010; padding: 25px; margin: 5px 35px;z-index: 10000;}
+.background-circle{ background-color: blue; border-radius: 50%; height: 80px; width: 80px;
+    padding: 12px; margin-left: 45px;}
+.button-title{ margin-top: 12px; cursor: pointer;}
+.button-title.one{ color: #54bffe }
+.button-title.two{ color: #e5b060 }
+.button-title.three{ color: #6dc866 }
+.button-title.fourth{ color: #c0bc36; }
+.button-title.fifth{ color: #b244fd; }
+.button-title.sixth{ color: #d8519f; }
+.button-icon{ position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); height: 30px; object-fit: contain;}
+.circle{ background-size: contain; height: 80px; width: 100%; background-repeat: no-repeat;
+    text-align: center; display: flex; background-position: center; position: relative}
+.fixed-bottom{ background: #473658; height: 65px; width: 102%; }
+.menu-icon{ height: 20px; margin-top: 25px; margin-left: 20px; }
+.user-info{ color: white; padding-top: 12px; margin-top: 0; margin-bottom: -14px; }
+.profile-icon{ height: 30px; margin-top: 12px; cursor: pointer;}
+.validation{ font-size: 14px; margin-top: -21px; }
+.footer-image{ height: 190px; width: 700px; position: relative; bottom: 150px; right: 100px; }
+
+@media(max-width: 766px){
+    .triangle-1{ position: relative; bottom: 80px; height: 230px; width: 220px;}
+    .logo-image{ height: 75px; }
+    .logo-text{margin: 32px 0px 0px -55px; width: 90px;}
+    .fixed-bottom{ height: 55px; }
+    .w40-p0{ padding: 0; width: 40%; }
+    .footer-image{ height: 145px; width: 465px; position: relative; bottom: 110px; right: 65px;}
+    .button-box{ margin: 5px 11px; z-index: 10000; opacity: 0.9; padding: 5px 20px; height: 125px; width: 90px}
+    .buttons-container{ margin: 0% 2%;}
+    .circle{ height: 65px; }
+    .button-title{ margin-top: 2px; font-size: 10px; }
+    .button-icon{ height: 18px; }
+    .w20-p0{ width: 20%; padding: 0; }
+    .w60-p0{ width: 60%; padding: 0; }
+    .profile-icon{ height: 16px; }
+    .menu-icon{ margin-top: 20px; margin-left: 25px; }
+    
+}
+
+@media(width: 414px){
+    .buttons-container{ margin: 22% 7%;}
+}
+
+@media(min-width: 768px) and (max-width: 1020px){
+    .logo-image{ height: 75px; }
+    .logo-text{ margin: 32px 0px 0px 25px; width: 120px;}
+    .triangle-1{ height: 220px; width: 330px;}
+    .fixed-bottom{ height: 60px; }
+    .footer-image{height: 150px; width: 600px; position: relative; bottom: 120px; right: 80px;}
+    .buttons-container{ margin: -7% 12%; }
+    .button-box{ margin: 5px 15px; font-size: 14px; z-index: 10000; opacity: 0.9; height: 175px;}
+    .profile-icon{ height: 24px; }
+}
+img {
+    pointer-events: none;
+}

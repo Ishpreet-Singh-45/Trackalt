@@ -1,0 +1,98 @@
+.container-fluid{ background-image: url('../../../assets/BG.png'); min-height: 100vh; overflow: hidden;}
+.top-row{ height: 140px; }
+.logo-image{ height: 100px; cursor: pointer}
+.logo-text{ width: 150px; margin: 40px 0px 0px 20px;cursor: pointer; }
+.title{ color: white; padding: 35px 10px; }
+.triangle-1{ height: 260px; float: right; width: 350px; } 
+.w3-dropdown-content{ color: #d44092; font-weight: 600; margin-left: 0%; position: relative; bottom: 108px; min-width: 80px;}
+.w3-button:hover{ color: #d54495 !important; background-color: #f3e1f1 !important;}
+.w3-dropdown-hover:first-child, .w3-dropdown-click:hover {background-color: transparent !important;}
+.distictListContainer, .addAdminForm{ background: white; z-index: 1000; position: relative; margin: auto 12%; }
+.distictListContainer{max-height: 400px; overflow: auto;}
+.addAdminForm{ margin: -3% 10%; z-index: 10000;}
+.plus-icon{position: relative; bottom: 65px; float: right; right: 102px;}
+.plus-icon:focus{box-shadow: none;}
+.plus-icon img{height: 35px;}
+.alert-danger{ width: 100%; padding-left: 2%;}
+
+label{font-size: 14px;}
+.addFormHeading{ border-bottom: 2px solid black; padding: 6px 8px; font-size: 18px;}
+.backBtn{border-bottom: 2px solid black; border-bottom: 2px solid black; padding: 5px 33px; height: 35px; cursor: pointer;}
+
+.fixed-bottom{ background: #473658; height: 65px; width: 102%; }
+.menu-icon{ height: 20px; margin-top: 25px; margin-left: 20px; }
+.user-info{color: white; padding-top: 12px; margin-top: 0; margin-bottom: -14px; }
+.profile-icon{ height: 30px; margin-top: 12px; cursor: pointer;}
+.validation{ font-size: 14px; margin-top: -21px; }
+.footer-image{ height: 190px; width: 700px; position: relative; bottom: 150px; right: 100px; }
+
+.modal-content{background: #473658;; padding: 8px 15px; padding-bottom: 1px; margin: 4% auto; z-index: 10000; position: relative;color: white;
+	border-radius: 5px; border: 1px solid #cd5fbf; max-height: 500px; overflow: auto;}
+.text-input{ background-color: #e4e5e5;}
+.text-input:focus{box-shadow: none;}
+.cancel-btn, .add-btn{background: linear-gradient(to bottom, #e7a2de, #a44698); color: white; border-radius: 0px;
+	border: 1px solid #2b2b2b; width: 49%; margin-left: 0px; font-size: 17px; width: 100%}
+.cancel-btn{margin-right: 8px;}
+.cancel-btn:focus, .add-btn:focus, .btn-sm:focus{box-shadow: none;}
+.add-form{max-height: 400px; overflow: auto; overflow-x: hidden; padding: 0px 18px;}
+.add-btn{margin-left: 12px;}
+.add-btn-modal{margin-left: 0px !important;}
+
+@media(max-width: 766px)
+{
+  .triangle-1{ position: relative; bottom: 80px; height: 230px; width: 220px;}
+  .logo-image{ height: 75px; }
+  .logo-text{margin: 32px 0px 0px -55px; width: 90px;}
+  .fixed-bottom{ height: 55px; }
+  .w40-p0{ padding: 0; width: 40%; }
+  .footer-image{ height: 145px; width: 465px; position: relative; bottom: 110px; right: 65px;}
+  .w20-p0{ width: 20%; padding: 0; }
+  .w60-p0{ width: 60%; padding: 0; }
+  .profile-icon{ height: 16px; }
+  .menu-icon{ margin-top: 20px; margin-left: 25px; }
+
+}
+
+@media(width: 414px){
+}
+
+@media(min-width: 768px) and (max-width: 1020px){
+	.logo-image{ height: 75px; }
+	.logo-text{ margin: 32px 0px 0px 25px; width: 120px;}
+	.triangle-1{ height: 220px; width: 330px;}
+	.fixed-bottom{ height: 60px; }
+	.footer-image{height: 150px; width: 600px; position: relative; bottom: 120px; right: 80px;}
+	.profile-icon{ height: 24px; }
+}
+
+.table-heading{
+	// color: white;
+	font-size: 17px;
+	font-weight: 600;
+	margin-bottom: 0px;
+}
+
+.search-bar{
+	height: 35px;
+	border-radius: 0px;
+	border: none;
+	border-bottom: 1px solid grey;
+}
+
+@media (min-width: 576px){
+	.modal-dialog {
+	max-width: 780px;
+	margin: 1.75rem auto;
+}}
+//.user-info{ padding-top: 20px; }
+
+
+
+
+
+
+
+
+
+
+

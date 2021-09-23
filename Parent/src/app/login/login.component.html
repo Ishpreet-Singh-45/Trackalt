@@ -1,0 +1,59 @@
+<div class="container-fluid">
+	<div class="row top-row">
+		<div class="col-md-1 w40-p0">
+			<img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png" routerLink="/dashboard">
+		</div>
+		<div class="col-md-6 w40-p0">
+			<img src="../../assets/trackalt-2x.png" class="logo-text">
+		</div>
+		<div class="col-md-5 p-0">
+			<img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+		</div>
+	</div>
+
+	<div class="form">
+		<form #f="ngForm" role="form" class="login-form" (ngSubmit)="login()">
+			<p class="login-text">Log in to Your Account</p>
+			<div>
+				<!-- Prevent usage of spacebar in textbox -->
+				<input type="email" class="form-control input-field" placeholder="Email" (keypress.space)="$event.preventDefault()" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" id="email" name="email" ngModel #emailref="ngModel" [(ngModel)]="email" required>
+				<br>
+				<div *ngIf="(emailref.errors) && (emailref.touched || emailref.dirty)" class="alert-danger text-dasnger">
+					<div [hidden]="!emailref.errors?.pattern" class="validation">
+						Invalid Email Format
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<input id="password" type="password" class="form-control input-field" name="password" placeholder="Password"
+					[(ngModel)]="password" (keypress.space)="$event.preventDefault()">
+			</div>
+			<div class="row mt-5">
+				<div class="col-md-7 p-0">
+					<div class="checkbox text-left">
+						<input type="checkbox" id="rememberMe" name="rememberMe" value="true">
+						<label for="rememberMe" class="remember-checkbox">Keep me logged in for 30 days</label>
+					</div>
+				</div>
+				<div class="col-md-5 p-0">
+					<a [routerLink]="['/forgot-password']" class="forgot-password">Forgot password?</a>
+				</div>
+			</div>
+			<div class="submit-button text-center" (click)="login()" (keyup.enter)="login()">
+				<p> LOG IN </p>
+			</div>
+			<br>
+			<div class="sign-up-link">
+				<p>Need an account? <span (click)="signUp()">Sign Up!</span></p>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="fixed-bottom">
+		<img src="../../assets/Bottom Triangle.png" class="footer-image">
+	</div>
+	<div class="fixed-bottom row">
+	</div>
+</div>

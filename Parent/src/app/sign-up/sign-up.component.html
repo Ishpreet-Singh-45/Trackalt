@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row top-row">
+        <div class="col-md-1 w40-p0">
+            <img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png">
+        </div>
+        <div class="col-md-6 w40-p0">
+            <img src="../../assets/trackalt-2x.png" class="logo-text">
+        </div>
+        <div class="col-md-5 p-0">
+            <img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+        </div>
+    </div>
+
+    <div class="form">
+        <form #f="ngForm" role="form" class="login-form">
+            <p class="login-text">Create Account</p>
+            <div>
+                <input type="email" class="form-control input-field" placeholder="Email"
+                    (keydown.space)="$event.preventDefault()" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+                    id="email" name="email" ngModel #emailref="ngModel" [(ngModel)]="email" required>
+                <br>
+                <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="aler alert-danger">
+                    <div [hidden]="!emailref.errors?.pattern" class="validation">
+                        Invalid Email Format
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <input id="password" type="password" class="form-control input-field" name="password"
+                    placeholder="Password" [(ngModel)]="password" >
+            </div>
+            <br>
+            <div>
+                <input id="password" type="password" class="form-control input-field" name="confirmPassword"
+                    placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+            </div>
+            <div style="height: 20px;">
+	            <div *ngIf="(confirmPassword && (password != confirmPassword))" class="aler alert-danger">
+	                <div [hidden]="!(password != confirmPassword)" class="validation" style="margin-top: 0">
+	                    Password do not match
+	                </div>
+	            </div>
+	        </div>
+            <div class="row mt-5">
+                <div class="col-md-8 p-0">
+                    <div class="checkbox text-left">
+                        <input type="checkbox" id="privacyPolicy" name="privacyPolicy" value="true"
+                            [(ngModel)]="privacyPolicy">
+                        <label for="rememberMe" class="remember-checkbox">I agree to the terms and privacy
+                            policy</label>
+                    </div>
+                </div>
+                <!-- <div class="col-md-5 p-0">
+                    <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot password?</a>
+                </div> -->
+            </div>
+            <div class="submit-button text-center" (click)="signUp()">
+                <p>Sign Up for Free</p>
+            </div>
+            <br>
+            <div class="sign-up-link">
+                <p>Already have an account? <span (click)="login()">Sign In!</span></p>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="fixed-bottom">
+        <img src="../../assets/Bottom Triangle.png" class="footer-image">
+    </div>
+    <div class="fixed-bottom row">
+    </div>
+</div>

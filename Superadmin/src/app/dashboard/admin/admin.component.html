@@ -1,0 +1,339 @@
+<div class="container-fluid">
+	<div class="row top-row">
+			<div class="col-md-1 w40-p0">
+					<img class="logo-image" src="../../assets/Ellipse 1 copy 13-2x.png" (click)="home()">
+			</div>
+			<div class="col-md-6 w40-p0">
+					<img src="../../assets/trackalt-2x.png" class="logo-text" (click)="home()">
+			</div>
+			<div class="col-md-5 p-0">
+					<img class="triangle-1" src="../../assets/Triangle 1-2x.png">
+			</div>
+	</div>
+
+	<!-- Middle Content -->
+	<div class="distictListContainer">
+		<div class="row" style="padding: 8px 6px;">
+			<div class="col-md-8">
+					<p class="table-heading">Admin Information</p>
+			</div>
+			<div class="col-md-4">
+				<div class="input-group md-form form-sm form-1 pl-0 searchBar">
+					<input class="form-control my-0 py-1 search-bar" type="search" placeholder="Search by Name" aria-label="Search" (keypress)="search()" name="searchText" [(ngModel)]="searchText">
+				</div>
+			</div>
+		</div>
+
+		<!-- Table to show the data -->
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col" style="width: 15%;">S.NO.</th>
+					<th scope="col" style="width: 22%;">NAME</th>
+					<th scope="col">EMAIL</th>
+					<th scope="col">CREATED AT</th>
+					<th scope="col">ACTIONS</th>
+				</tr>
+			</thead>
+
+			<tbody *ngIf="adminList && adminList.length > 0; else noData">
+				<tr *ngFor="let item of adminList; let i = index">
+					<td> {{i+1}} </td>
+					<td *ngIf="item.firstName && item.lastName">
+						{{item.firstName.charAt(0).toUpperCase() + item.firstName.slice(1)}}
+						{{item.lastName.charAt(0).toUpperCase() + item.lastName.slice(1)}}
+					</td>
+					<td *ngIf="item.firstName && !item.lastName">
+						{{item.firstName.charAt(0).toUpperCase() + item.firstName.slice(1)}}
+					</td>
+					<td *ngIf="!item.firstName && !item.lastName">
+						N/A
+					</td>
+					<td>{{item.email}}</td>
+					<td>{{item.createdAt.split('T')[0] | date: 'MM/dd/yyyy'}}</td>
+					<td class="text-right pull-right">
+						<button class="btn btn-sm mar-5-left" title="Edit Department" (click)="editAdminData(item)" style="padding-left: 25px;">
+							<img src="../../../assets/edit (2).png">
+						</button>
+						<button class="btn btn-sm mar-5-left" title="Edit Department" (click)="deleteAdminData(item)">
+							<img src="../../../assets/delete (3).png">
+						</button>
+					</td>
+				</tr>
+			</tbody>
+			<ng-template #noData>
+				<p class="text-danger pt-3 ps-3">
+					No Data Found!
+				</p>
+			</ng-template>
+		</table>
+	</div>
+
+	<!-- Add New Modal -->
+	<div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog" aria-labelledby="addAdminModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+	                <h5 class="modal-title ms-3 pb-3" id="addSchoolModalLabel" style="font-weight: 500; margin-left: 1px;">Add Admin</h5>
+					<form #f="ngForm" class="add-form" role="form">
+						<!-- First and Last Name -->
+						<div class="row">
+							<div class="col-md-6">
+								<label style="font-size: 16px;">First Name</label>
+								<br>
+								<input type="text" class="text-input form-control" name="firstName" [(ngModel)]="firstName"/>
+							</div>
+							<div class="col-md-6">
+								<label style="font-size: 16px;">Last Name</label>
+								<br>
+								<input type="text" class="text-input form-control" name="lastName" [(ngModel)]="lastName" />
+							</div>
+						</div>
+
+						<br>
+
+						<!-- Email and Password -->
+						<div class="row">
+							<div class="col-md-6">
+								<label style="font-size: 16px;">Email</label>
+								<br>
+								<input type="text" class="text-input form-control" name="email" [(ngModel)]="email" (keydown.space)="$event.preventDefault()" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" id="email" name="email" ngModel #emailref="ngModel" [(ngModel)]="email" required />
+								<div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty) " class="aler alert-danger">
+									<div [hidden]="!emailref.errors?.pattern">
+										Invalid Email Format
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label style="font-size: 16px;">password</label>
+								<br>
+								<input type="password"  class="text-input form-control" name="password"
+										[(ngModel)]="password" (keydown.space)="$event.preventDefault()" />
+							</div>
+						</div>
+
+						<br>
+
+						<!-- Phone Number and Country Code -->
+						<div class="row">
+							<div class="col-md-6">
+									<label style="font-size: 16px;">Phone Number</label>
+									<br>
+									<input type="text" class="text-input form-control" name="phoneNumber" [(ngModel)]="phoneNumber"
+											(keydown.space)="$event.preventDefault()" />
+							</div>
+							<div class="col-md-6">
+									<label style="font-size: 16px;">Country Code</label>
+									<br>
+									<input type="text" class="text-input form-control" name="countryCode" [(ngModel)]="countryCode"
+											(keydown.space)="$event.preventDefault()" />
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-6">
+								<label style="font-size: 16px;">Mailing Address</label>
+								<br>
+								<input type="text" class="text-input form-control" name="mailingAddress"
+										[(ngModel)]="mailingAddress" />
+							</div>
+							<div class="col-md-6">
+								<label style="font-size: 16px;">Mailing City</label>
+								<br>
+								<input type="text" class="text-input form-control" name="mailingCity" [(ngModel)]="mailingCity" />
+							</div>
+						</div>
+						<br>
+						<!-- Mailing State and Zip -->
+						<div class="row">
+							<div class="col-md-6">
+								<label style="font-size: 16px;"> Physical State </label>
+								<br>
+								<select id="status" name="status"  class="text-input form-control" [(ngModel)]="physicalDistrict" >
+									<option selected disabled>Select District</option>
+	                                <option *ngFor="let item of districtList" name="physicalDistrict" >{{item.districtName}}</option>
+	                            </select>
+							</div>
+							<div class="col-md-6">
+								<label style="font-size: 16px;">Mailing Zip</label>
+								<br>
+								<input type="text" class="text-input form-control" name="mailingZip" [(ngModel)]="mailingZip" (keydown.space)="$event.preventDefault()" />
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md">
+								<button type="button" class="btn btn-light cancel-btn float-start" data-bs-dismiss="modal" (click)="cancelAdd()">Cancel</button>
+							</div>
+							<div class="col-md">
+								<button type="submit"  class="clearfix btn btn-light add-btn float-start" (click)="addAdmin()">Add</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add new admin icon button -->
+	<div class="fixed-bottom">
+		<img src="../../assets/Bottom Triangle.png" class="footer-image">
+		<button type="button" class="btn btn-sm plus-icon" (click)="openAdd()" data-toggle="modal" data-target="#addAdminModal">
+			<img src="../../../assets/plus.png"  data-toggle="tooltip" title="Add new admin">
+		</button>
+	</div>
+	<div class="fixed-bottom row">
+		<div class="col-md-2 w20-p0">
+		</div>
+		<div class="col-md-8 text-center w60-p0">
+			<p class="user-info">Welcome {{userName}} !!</p>
+			<p class="user-info">{{role}}</p>
+		</div>
+		<div class="col-md-2 text-center w20-p0">
+			<div class="w3-dropdown-hover">
+				<img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
+						data-placement="top" title="Log Out">
+				<p style="color: white;">Profile</p>
+				<div class="w3-dropdown-content w3-bar-block w3-border">
+						<a (click)="logout()" class="w3-bar-item w3-button">Log Out</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Edit Admin Modal -->
+<div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="addAdminModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<form #f="ngForm" class="add-form" role="form">
+					<!-- First and Last Name -->
+					<div class="row">
+						<div class="col-md-6">
+							<label style="font-size: 16px;">First Name</label>
+							<br>
+							<input type="text" class="text-input form-control" name="firstName" [(ngModel)]="firstName"/>
+						</div>
+						<div class="col-md-6">
+							<label style="font-size: 16px;">Last Name</label>
+							<br>
+							<input type="text" class="text-input form-control" name="lastName" [(ngModel)]="lastName" />
+						</div>
+					</div>
+
+					<br>
+
+					<!-- Email and Password -->
+					<div class="row">
+						<div class="col-md-6">
+							<label style="font-size: 16px;">Email</label>
+							<br>
+							<input type="text" class="text-input form-control" name="email" [(ngModel)]="email" (keydown.space)="$event.preventDefault()" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" id="email" name="email" ngModel #emailref="ngModel" [(ngModel)]="email" required />
+							<div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty) " class="aler alert-danger">
+								<div [hidden]="!emailref.errors?.pattern">
+									Invalid Email Format
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label style="font-size: 16px;">Phone Number</label>
+							<br>
+							<input type="text" class="text-input form-control" name="phoneNumber" [(ngModel)]="phoneNumber"
+									(keydown.space)="$event.preventDefault()" />
+						</div>
+					</div>
+
+					<br>
+
+					<!-- Phone Number and Country Code -->
+					<div class="row">
+						<div class="col-md-6">
+							<label style="font-size: 16px;">Country Code</label>
+							<br>
+							<input type="text" class="text-input form-control" name="countryCode" [(ngModel)]="countryCode" (keydown.space)="$event.preventDefault()" />
+						</div>
+						<div class="col-md-6">
+							<label style="font-size: 16px;">Mailing Address</label>
+							<br>
+							<input type="text" class="text-input form-control" name="mailingAddress" [(ngModel)]="mailingAddress" />
+						</div>
+					</div>
+
+					<br>
+
+					<!-- Mailing Address and City -->
+					<div class="row">
+						<div class="col-md-6">
+							<label style="font-size: 16px;">Mailing City</label>
+							<br>
+							<input type="text" class="text-input form-control" name="mailingCity" [(ngModel)]="mailingCity" />
+						</div>
+						<div class="col-md-6">
+							<label style="font-size: 16px;"> Mailing State </label>
+							<br>
+							<select id="status" name="status"  class="text-input form-control" [(ngModel)]="physicalDistrict">
+								<option selected disabled>Select District</option>
+                                <option *ngFor="let item of districtList" name="physicalDistrict" >{{item.districtName}}</option>
+                            </select>
+						</div>
+					</div>
+
+					<br>
+
+					<!-- Mailing State and Zip -->
+					<div class="row">
+						<div class="col-md-6">
+							<label style="font-size: 16px;">Mailing Zip</label>
+							<br>
+							<input type="text" class="text-input form-control" name="mailingZip" [(ngModel)]="mailingZip" (keydown.space)="$event.preventDefault()" />
+						</div>
+					</div>
+
+					<br>
+
+					<!-- Cancel and Delete -->
+					<div class="row">
+						<div class="col-md">
+							<button type="button" class="btn btn-light cancel-btn float-start" data-bs-dismiss="modal" (click)="cancelAdd()">Cancel</button>
+						</div>
+						<div class="col-md">
+							<button type="submit"  class="clearfix btn btn-light add-btn float-start" (click)="editAdmin()">Edit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteAdminModal" tabindex="-1" role="dialog" aria-labelledby="deleteAdminModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h5 class="modal-title" id="deleteAdminModalLabel" style="font-weight: 500">
+					Delete Admin
+				</h5>
+				<br>
+				<p>Are you sure want to delete this admin?</p>
+				<form #f="ngForm" class="add-form" role="form">
+					<div class="row">
+						<div class="col-md">
+							<button type="button" class="btn btn-light cancel-btn" data-bs-dismiss="modal" (click)="cancelDelete()">
+								No, cancel !
+							</button>
+						</div>
+						<div class="col-md">
+							<button type="submit" class="btn btn-light add-btn-modal add-btn" data-dismiss="modal" (click)="deleteAdmin()">
+								Yes, Delete
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
