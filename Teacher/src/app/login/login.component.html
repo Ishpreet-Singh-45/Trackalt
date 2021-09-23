@@ -17,7 +17,7 @@
 			<div>
 				<input type="email" class="form-control input-field" placeholder="Email"
 					(keypress.space)="$event.preventDefault()" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
-					id="email" name="email" ngModel #emailref="ngModel" [(ngModel)]="email" required>
+					id="email" name="email" ngModel #emailref="ngModel" [(ngModel)]="email" required >
 				<br>
 				<div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="alert-danger text-danger">
 					<div [hidden]="!emailref.errors?.pattern" class="validation">
@@ -41,7 +41,7 @@
 					<a [routerLink]="['/forgot-password']" class="forgot-password">Forgot password?</a>
 				</div>
 			</div>
-			<div class="submit-button text-center" (click)="login()">
+			<div class="submit-button text-center" (keyup.enter)="login()">
 				<p>LOG IN</p>
 			</div>
 			

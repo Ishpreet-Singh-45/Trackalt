@@ -13,8 +13,8 @@ declare let $: any;
 export class AdminComponent implements OnInit
 {
 	adminList: any;
-	adminListing = true;
-	editAdminBtn = false;
+	adminListing = true;	// opening/closing the new admin SPA modal
+	editAdminBtn = false;	// edit admin submit button
 	adminId: any;
 	email: any;
 	password: any;
@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit
 	addEditTeacher: any;
 	addEditStudent: any;
 	userName: any;
-	searchText= "";
+	searchText = "";
 	role:any
 	districtList: any;
 
@@ -71,22 +71,11 @@ export class AdminComponent implements OnInit
 		});
 	}
 
-	// get all district names for dropwdown in add modal
-	getDistrict()
-  	{
-  		this.spinner.show();
-	    this.authService.getAllDistrict().then( (res: any) =>
-	    {
-	    	this.districtList = res['data'];
-	    	this.spinner.hide();
-	    	console.log("school list___________", this.districtList);
-	    });
-	}
-
 	editAdminData(data: any)
 	{
 		console.log(data);
 		this.editAdminBtn = true;
+		console.log('editAdminBtn: ', this.editAdminBtn)
 		this.adminId = data._id;
 		this.email = data.email;
 		this.password = data.password;
@@ -106,9 +95,21 @@ export class AdminComponent implements OnInit
 		this.addEditSchoolCalendar = data.addEditSchoolCalendar;
 		this.addEditTeacher = data.addEditTeacher;
 		this.addEditStudent = data.addEditStudent;
-		this.adminListing = false;
+		// this.adminListing = false;
 
 		$('#editAdminModal').modal('show')
+	}
+
+	// get all district names for dropwdown in add modal
+	getDistrict()
+  	{
+  		this.spinner.show();
+	    this.authService.getAllDistrict().then( (res: any) =>
+	    {
+	    	this.districtList = res['data'];
+	    	this.spinner.hide();
+	    	console.log("school list___________", this.districtList);
+	    });
 	}
 
 	editAdmin()
@@ -160,6 +161,7 @@ export class AdminComponent implements OnInit
 
 	deleteAdminData(data: any)
 	{
+		// delete admin based on unique id parameter from mongoose
 		this.adminId = data._id;
 		$('#deleteAdminModal').modal('show');
 	}
@@ -191,7 +193,7 @@ export class AdminComponent implements OnInit
 	}
 
 	// opens the modal to add new admin
-	openAdd()
+	openAddModal()
 	{
 		console.log("open");
 		this.adminId = "";
@@ -215,6 +217,30 @@ export class AdminComponent implements OnInit
 		this.addEditTeacher = "";
 		this.addEditStudent = "";
 		this.adminListing = false;
+	}
+	openAddDiv()
+	{
+		console.log("open");
+		this.adminId = "";
+		this.email = "";
+		this.password = "";
+		this.firstName = "";
+		this.lastName = "";
+		this.middleName = "";
+		this.mailingAddress = "";
+		this.mailingCity = "";
+		this.mailingState = "";
+		this.mailingZip = "";
+		this.phoneNumber = "";
+		this.countryCode = "";
+		this.imageUrl = "";
+		this.physicalDistrict = "";
+		this.schoolName = "";
+		this.editDistrict = "";
+		this.addEditDistrictCalendar = "";
+		this.addEditSchoolCalendar = "";
+		this.addEditTeacher = "";
+		this.addEditStudent = "";
 		$('#addAdminModal').modal('show');
 	}
 
@@ -245,7 +271,6 @@ export class AdminComponent implements OnInit
 			addEditTeacher: this.addEditTeacher,
 			addEditStudent: this.addEditStudent,
 		}
-		console.log(dataToSend)
 		// send the data and respond to response
 		this.authService.addAdmin(dataToSend).then( (res: any) =>
 		{
@@ -289,23 +314,14 @@ export class AdminComponent implements OnInit
 		this.router.navigate(['/dashboard'])
 	}
 
-	lettersOnly(event: any)
-	{
-		var charCode = event.keyCode;
-		console.log("event_________", event, charCode)
-		if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8 || charCode == 32)
-			return true;
-		else
-			return false;
-	}
 
 	search()
 	{
 		let dataToSend =
 		{
-			search: this.searchText,
+			search: this.searchText
 		}
-		console.log("data to  search", dataToSend);
+		console.log("data to  search", this.searchText);
 		this.authService.getAdmins(dataToSend).then((res: any) =>
 		{
 			this.adminList = res["data"];

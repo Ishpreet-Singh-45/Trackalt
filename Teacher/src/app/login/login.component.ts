@@ -29,14 +29,14 @@ export class LoginComponent implements OnInit
 
 	login()
 	{
-		 this.spinner.show();
-		 if (!this.email || !this.password)
-		 {
-				this.toastr.error('All fields are required.', 'Error');
-				this.spinner.hide();
-		 }
-		 else
-		 {
+		this.spinner.show();
+		if (!this.email || !this.password)
+		{
+			this.toastr.error('All fields are required.', 'Error');
+			this.spinner.hide();
+		}
+		else
+		{
 			let dataToSend =
 			{
 				email: this.email,

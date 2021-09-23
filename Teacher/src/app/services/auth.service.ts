@@ -10,7 +10,10 @@ export class AuthService
 	baseUrl = environment.test;
 	// headers1 = { headers: { Authorization: "Bearer " + this.token } };
 
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient
+	)
+	{}
 
 	login(data: any)
 	{
@@ -20,7 +23,7 @@ export class AuthService
 		.then(res => res);
 	}
 
- 
+
 	forgotPassword(data: any)
 	{
 		return this.http
@@ -28,6 +31,7 @@ export class AuthService
 		.toPromise()
 		.then(res => res);
 	}
+
 
 	resetPassword(data: any)
 	{
@@ -37,6 +41,7 @@ export class AuthService
 		.then(res => res);
 	}
 
+
 	signUp(data: any)
 	{
 		return this.http
@@ -44,6 +49,7 @@ export class AuthService
 		.toPromise()
 		.then(res => res)
 	}
+
 
 	storeUserData(token: string)
 	{
@@ -67,9 +73,11 @@ export class AuthService
 		return localStorage.getItem("id_token");
 	}
 
+
 	loggedIn() {
 		return this.loadToken() !== null;
 	}
+
 
 	logout() {
 		this.authToken = null;

@@ -7,16 +7,18 @@
 .w3-dropdown-content{ color: #d44092; font-weight: 600; margin-left: 0%; position: relative; bottom: 108px; min-width: 80px;}
 .w3-button:hover{ color: #d54495 !important; background-color: #f3e1f1 !important;}
 .w3-dropdown-hover:first-child, .w3-dropdown-click:hover {background-color: transparent !important;}
-.distictListContainer, .addAdminForm{ background: white; z-index: 1000; position: relative; margin: auto 12%; }
+.distictListContainer{ background: white; z-index: 1000; position: relative; margin: auto 12%; }
 .distictListContainer{max-height: 400px; overflow: auto;}
-.addAdminForm{ margin: -3% 10%; z-index: 10000;}
+
+.addAdminForm{ background-color: #282030; color: white; margin: -20% 10%; position: relative; z-index: 10000;}
+
 .plus-icon{position: relative; bottom: 65px; float: right; right: 102px;}
 .plus-icon:focus{box-shadow: none;}
 .plus-icon img{height: 35px;}
 .alert-danger{ width: 100%; padding-left: 2%;}
 
 label{font-size: 14px;}
-.addFormHeading{ border-bottom: 2px solid black; padding: 6px 8px; font-size: 18px;}
+.addFormHeading{padding: 6px 8px; font-size: 18px;}
 .backBtn{border-bottom: 2px solid black; border-bottom: 2px solid black; padding: 5px 33px; height: 35px; cursor: pointer;}
 
 .fixed-bottom{ background: #473658; height: 65px; width: 102%; }
@@ -24,7 +26,7 @@ label{font-size: 14px;}
 .user-info{color: white; padding-top: 12px; margin-top: 0; margin-bottom: -14px; }
 .profile-icon{ height: 30px; margin-top: 12px; cursor: pointer;}
 .validation{ font-size: 14px; margin-top: -21px; }
-.footer-image{ height: 190px; width: 700px; position: relative; bottom: 150px; right: 100px; }
+.footer-image{ height: 190px; width: 700px; position: relative; bottom: 150px; right: 200px; }
 
 .modal-content{background: #473658;; padding: 8px 15px; padding-bottom: 1px; margin: 4% auto; z-index: 10000; position: relative;color: white;
 	border-radius: 5px; border: 1px solid #cd5fbf; max-height: 500px; overflow: auto;}

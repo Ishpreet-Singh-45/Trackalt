@@ -185,7 +185,9 @@
                             <!-- <input type="text" class="text-input form-control" name="status" [(ngModel)]="status" /> -->
                             <select id="status" name="status"  class="text-input form-control"
                                [(ngModel)]="physicalDistrict" >
-                                <option *ngFor="let item of districtList" name="physicalDistrict" >{{item.districtName}}</option>
+                                <option *ngFor="let item of districtList" name="physicalDistrict" >{{item}}</option>
+
+
                             </select> 
                             
                         </div>

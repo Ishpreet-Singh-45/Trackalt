@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service'
 
 @Component({
-  selector: 'app-attendance',
-  templateUrl: './attendance.component.html',
-  styleUrls: ['./attendance.component.scss']
+	selector: 'app-attendance',
+	templateUrl: './attendance.component.html',
+	styleUrls: ['./attendance.component.scss']
 })
 export class AttendanceComponent implements OnInit
 {
@@ -23,11 +23,13 @@ export class AttendanceComponent implements OnInit
 		private authService: AuthService
 	) { }
 
+
 	ngOnInit(): void
 	{
 		this.userName = localStorage.getItem("userName");
 		// this.getClassroomList()
 	}
+
 
 	logout()
 	{
@@ -35,6 +37,7 @@ export class AttendanceComponent implements OnInit
 		this.router.navigate(['/login']);
 		return false;
 	}
+
 
 	getStudentAttendance()
 	{

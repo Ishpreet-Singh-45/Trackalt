@@ -11,8 +11,31 @@
 .input-field{ border-radius: 0; border: 1px solid; text-align: center; font-style: italic;}
 .input-field:focus{ box-shadow: none; }
 .submit-btn{ width: 103%; margin-left: -6px; margin-top: 15px;}
-.submit-button{ background-image: url('../../assets/Log\ In\ Button-2x.png'); background-size: cover; height: 50px; 
-    width: 103%; margin-left: -6px; margin-top: 15px; cursor: pointer;}
+
+
+.submit-button
+{
+	// background: linear-gradient(to bottom, #e7a2de, #a44698);
+	background-image: url('../../assets/Log\ In\ Button-2x.png');
+	background-size: cover;
+	height: 50px;
+	width: 103%;
+	margin-left: -6px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+/*
+.submit-button
+{
+	background: linear-gradient(to bottom, #e7a2de, #a44698);
+	color: white;
+	border-radius: 0px;
+	border: 1px solid #2b2b2b;
+	width: 49%;
+	margin-left: 0px;
+	font-size: 17px;
+	width: 100%
+}*/
 .submit-button p{ color: white; padding-top: 10px; font-size: 18px; transform: translateY(15%)}
 .centered { position: absolute; color: white; top: 58%; left: 54%; transform: translate(-50%, -50%); }
 .p-0{ padding: 0; }
