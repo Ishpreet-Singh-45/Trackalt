@@ -1,3 +1,6 @@
+$font-color: #ffffff;
+$background-color: #473658;
+
 .container-fluid
 {
 	background-image: url('../../assets/BG.png');
@@ -31,7 +34,8 @@
 }
 .button-box
 {
-	background-color: #473658;
+	background-color: $background-color;
+	color:  #ffffff;
 	text-align: center;
 	height: 185px;
 	width: 185px;
@@ -41,12 +45,23 @@
     margin: 5px 35px;
     z-index: 10000;
 }
-.button-box.circle-icon-1 { background-image: url('../../assets/Button 1-2x.png'); }
-.button-box.circle-icon-2 { background-image: url('../../assets/Button 2-2x.png'); }
-.button-box.circle-icon-3 { background-image: url('../../assets/Button 3-2x.png'); }
-.button-box.circle-icon-4 { background-image: url('../../assets/Button 6 Tag Lookup Icon-2x.png'); }
-.button-box.circle-icon-5 { background-image: url('../../assets/Button 5 Admin Icon-2x.png'); }
-.button-box.circle-icon-6 { background-image: url('../../assets/Button 4-2x.png'); }
+.circle
+{
+	background-size: contain;
+	height: 80px;
+	width: 100%;
+	background-repeat: no-repeat;
+    text-align: center;
+    display: flex;
+    background-position: center;
+    position: relative
+}
+.button-box .circle-icon-1 { background-image: url('../../assets/Button 1-2x.png'); }
+.button-box .circle-icon-2 { background-image: url('../../assets/Button 2-2x.png'); }
+.button-box .circle-icon-3 { background-image: url('../../assets/Button 3-2x.png'); }
+.button-box .circle-icon-4 { background-image: url('../../assets/Button 6 Tag Lookup Icon-2x.png'); }
+.button-box .circle-icon-5 { background-image: url('../../assets/Button 5 Admin Icon-2x.png'); }
+.button-box .circle-icon-6 { background-image: url('../../assets/Button 4-2x.png'); }
 
 .button-icon
 {
@@ -71,8 +86,25 @@
 
 
 
+.fixed-bottom
+{
+	background: $background-color;
+	height: 65px;
+	width: 102%;
+	color: $font-color;
+}
+.bottom-image-triangle
+{
+	position: relative;
+	height: 190px;
+	width: 700px;
+	bottom: 150px;
+	right: 100px;
+}
 
 
+
+/*
 
 .w3-dropdown-content{ color: #d44092; font-weight: 600; margin-left: 0%; position: relative; bottom: 108px; min-width: 80px;}
 .w3-button:hover{ color: #d54495 !important; background-color: #f3e1f1 !important;}
@@ -90,23 +122,15 @@
 .button-title.fifth{ color: #b244fd; }
 .button-title.sixth{ color: #d8519f; }
 .button-icon{ position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); height: 30px; object-fit: contain;}
-.circle{ background-size: contain; height: 80px; width: 100%; background-repeat: no-repeat;
-    text-align: center; display: flex; background-position: center; position: relative}
-.fixed-bottom{ background: #473658; height: 65px; width: 102%; }
+
+
 .menu-icon{ height: 20px; margin-top: 25px; margin-left: 20px; }
 .user-info{ color: white; padding-top: 12px; margin-top: 0; margin-bottom: -14px; }
 .profile-icon{ height: 30px; margin-top: 12px; cursor: pointer;}
 .validation{ font-size: 14px; margin-top: -21px; }
 
 
-.bottom-image-triangle
-{
-	height: 190px;
-	width: 700px;
-	position: relative;
-	bottom: 150px;
-	right: 100px;
-}
+
 
 
 
