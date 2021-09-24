@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit
 	addEditTeacher: any;
 	addEditStudent: any;
 	userName: any;
-	searchText = "";
+	searchText: any;
 	role:any
 	districtList: any;
 
@@ -59,6 +59,7 @@ export class AdminComponent implements OnInit
 
 	getAdmins()
 	{
+		this.searchText = ""
 		this.spinner.show();
 		let dataToSend = {
 			search: this.searchText
