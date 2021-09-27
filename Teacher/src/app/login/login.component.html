@@ -12,11 +12,11 @@
 	</div>
 
 	<div class="form">
-		<form #f="ngForm" role="form" class="login-form">
+		<form #f="ngForm" role="form" class="login-form" (keydown.enter) = "login()">
 			<p class="login-text">Log in to Your Account</p>
 			<div>
 				<input type="email" class="form-control input-field" placeholder="Email"
-					(keypress.space)="$event.preventDefault()" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+					(keypress.space)="$event.preventDefault()" pattern="[A-Za-z0-9._+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
 					id="email" name="email" ngModel #emailref="ngModel" [(ngModel)]="email" required >
 				<br>
 				<div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="alert-danger text-danger">
@@ -41,7 +41,7 @@
 					<a [routerLink]="['/forgot-password']" class="forgot-password">Forgot password?</a>
 				</div>
 			</div>
-			<div class="submit-button text-center" (keyup.enter)="login()">
+			<div class="submit-button text-center" (click)="login()">
 				<p>LOG IN</p>
 			</div>
 			

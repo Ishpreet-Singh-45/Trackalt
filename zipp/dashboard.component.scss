@@ -2,7 +2,7 @@ $bg-color: #282030;
 $btn-bg-color: #473658;
 
 // All phone screens [portrait]
-.container-fluid
+.container
 {
 	color: white;
 }
@@ -17,6 +17,7 @@ $btn-bg-color: #473658;
 	position: relative;
 	height: 130px;
 	width: 100%;
+	z-index: -2;
 }
 .logo-image
 {
@@ -44,8 +45,8 @@ $btn-bg-color: #473658;
     	flex-direction: column;
     	justify-content: center;
     	flex-wrap: nowrap;
-    	margin: 10px 0;
-    }
+    	margin: 15px 0;
+    }	
     .btn-box
     {
     	box-sizing: border-box;
@@ -75,7 +76,7 @@ $btn-bg-color: #473658;
 }
 .hidden-tabs
 {
-	margin-top: 5%;
+	margin-top: 5%;  	
 }
 
 .fixed-bottom
@@ -118,9 +119,9 @@ $btn-bg-color: #473658;
 	{
 	    .btn-row
 	    {
-	    	margin: -16px auto;
+	    	margin: 0 auto;
 	    	flex-direction: row;
-	    }
+	    }	
 	    .btn-box
 	    {
 	    	margin: 1.25rem;
@@ -136,21 +137,8 @@ $btn-bg-color: #473658;
 @media screen and (min-width: 768px)
 {
 	// for screens >= 768px [Laptops and Desktops]
-	.logo-image
-	{
-		width: 90px;
-		height: 90px;
-	}
-	.logo-text
-	{
-		height: 25px;
-	}
 	.modules-container
 	{
-		.btn-row
-		{
-			margin: -16px auto;
-		}
 		.btn-title
 		{
 			font-size: 1rem;
@@ -166,35 +154,5 @@ $btn-bg-color: #473658;
 	.hidden-tabs
 	{
 		margin-top: 7%;
-	}
-}
-
-@media screen and (min-width: 1030px)
-{
-	.logo-image
-	{
-		width: 90px;
-		height: 90px;
-	}
-	.logo-text
-	{
-		height: 25px;
-	}
-	.top-row
-	{
-		height: 83px;
-	}
-	.modules-container
-	{
-		margin-top: 0;
-		.btn-row
-		{
-			margin: -16px auto;
-		}
-		.btn-box
-		{
-			height: 200px;
-			font-size: 1rem;
-		}
 	}
 }

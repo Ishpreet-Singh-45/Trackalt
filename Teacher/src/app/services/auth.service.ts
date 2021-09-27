@@ -60,7 +60,7 @@ export class AuthService
 
 	getStudentAttendance(data: any)
 	{
-		return this.http.post(this.baseUrl + '/admin/attendanceByClassGrade', data)
+		return this.http.post(this.baseUrl + 'admin/attendanceByClassGrade', data)
 		.toPromise()
 		.then(res => res)
 	}

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  test: 'http://3.143.46.152:5000/'
+  // test: 'http://3.143.46.152:5000/'
+  test: 'http://10.10.30.25:5000/'
 };
 
 /*

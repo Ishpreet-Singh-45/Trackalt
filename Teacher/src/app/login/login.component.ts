@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit
 			this.authService.login(dataToSend).then( (res: any) =>
 			{
 				console.log("login res________________", res);
-				if (res['status'] == 1)
+				if (res['status'] == 200)
 				{
 					if (res['data']['role'] == 'teacher')
 					{

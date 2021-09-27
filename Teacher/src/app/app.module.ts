@@ -38,7 +38,7 @@ import { SignUpComponent } from './sign-up/sign-up.component'
     NgxSpinnerModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-center',
+      positionClass: 'toast-top-center',
       timeOut: 5000,
       extendedTimeOut: 5000,
       closeButton: true

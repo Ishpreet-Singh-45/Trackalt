@@ -1,3 +1,169 @@
+$bg-color: #282030;
+$btn-bg-color: #473658;
+
+// All phone screens [portrait]
+.container
+{
+	color: white;
+}
+.row
+{
+	margin: auto 0;
+	overflow: hidden;
+	max-height: 50%;
+}
+.top-row
+{
+	position: relative;
+	height: 130px;
+	width: 100%;
+}
+.logo-image
+{
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+}
+.logo-text
+{
+	height: 30px;
+	margin-left: .75rem;
+	cursor: pointer;
+}
+.middle-row
+{
+	margin-top: 15px;;
+}
+
+.container
+{
+	background: #ffffff;
+	color: #000000;
+	width: 80%;
+}
+
+.user-info
+{
+	margin: 0;
+	padding: 0
+}
+
+.profile-icon
+{
+	width: 12px;
+	height: 12px;
+	position: relative;
+
+}
+
+.fixed-bottom
+{
+	position: fixed;
+	.footer-image
+	{
+		position: inherit;
+		width: 400px;
+		bottom: 28px;
+		left: -50px;
+		z-index: -2	;
+	}
+	.footer
+	{
+		position: relative;
+		background-color: $btn-bg-color;
+		color: #ffffff;
+		height: 65px;
+		width: auto;
+		margin-left: -3%;
+	}
+
+}
+.profile-icon
+{
+	height: 35px;
+	width: 35px;
+	margin: 10px 15px;
+}
+.profile-text
+{
+	right: 20px;
+	float: right;
+}
+
+@media screen and (min-width: 660px)
+{
+	// For screens >= 660px [Ipads and Tablets]
+	.logo-image
+	{
+		width: 130px;
+		height: 130px;
+	}
+	.logo-text
+	{
+		height: 30px;
+		margin-left: 10px;
+	}
+	.container
+	{
+		width: 60%;
+	}
+}
+
+// For Laptops and Desktops
+@media screen and (min-width: 768px)
+{
+	// for screens >= 768px [Laptops and Desktops]
+	.modules-container
+	{
+		.btn-title
+		{
+			font-size: 1rem;
+		}
+	}
+	.fixed-bottom
+	{
+		.footer-image
+		{
+			width: 540px;
+		}
+	}
+	.hidden-tabs
+	{
+		margin-top: 7%;
+	}
+}
+
+@media screen and (min-width: 1030px)
+{
+	.logo-image
+	{
+		width: 90px;
+		height: 90px;
+	}
+	.logo-text
+	{
+		height: 25px;
+	}
+	.fixed-bottom
+	{
+		.footer-image
+		{
+			width: 400px;
+		}
+	}
+	.profile-icon
+	{
+		right: 5px;
+		bottom: 5px;
+	}
+}
+
+
+
+
+/*
+
+
 .container-fluid{ background-image: url('../../../assets/BG.png'); min-height: 100vh; overflow: hidden;}
 .top-row{ height: 140px; }
 .logo-image{ height: 100px; cursor: pointer;}
@@ -67,3 +233,4 @@
     .footer-image{height: 150px; width: 600px;}
     .profile-icon{ height: 24px; }
 }
+*/

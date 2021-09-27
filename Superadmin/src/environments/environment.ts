@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  //test: 'http://3.143.46.152:5000/',
+  // test: 'http://3.143.46.152:5000/',
   test: 'http://10.10.30.25:5000/',
   accessKeyId: "AKIARYV6ELZPTU6NQD7F",
   secretAccessKey: "061iCzmDtBVk+JoKDOTC3+GB4qdHqtmMOfnUgDf",
