@@ -12,14 +12,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './services/auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ForgotPasswordComponent,
-    FooterComponent
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

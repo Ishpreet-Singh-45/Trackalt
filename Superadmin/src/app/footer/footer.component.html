@@ -1,42 +1,16 @@
-<div class="fixed-bottom row" *ngIf="userName;else other_content">
-
-    <div class="col-md-2 w20-p0">
-        <!-- <img src="../../assets/Footer Menu Link-2x.png" class="menu-icon"> -->
-    </div>
-    <div class="col-md-8 text-center w60-p0">
-        <p class="user-info">Welcome {{userName}} ! </p>
-        <p class="user-info">{{role}}</p>
-    </div>
-    <div class="col-md-2 text-center w20-p0">
-        <!-- <img src="../../assets/Profile Icon-2x.png" class="profile-icon" (click)="logout()" data-toggle="tooltip"
-            data-placement="top" title="Log Out">
-        <p style="color: white;">Profile</p> -->
-
-        <div class="w3-dropdown-hover">
-            <img src="../../assets/Profile Icon-2x.png" class="profile-icon" data-toggle="tooltip"
-                data-placement="top" title="Log Out">
-            <p style="color: white;">Profile</p>
-            <div class="w3-dropdown-content w3-bar-block w3-border">
-                <p  >Rahul</p>
-                <a class="w3-bar-item w3-button" (click)="logout()">Log Out</a>
-            </div>
-        </div>
-    </div>
+<div class="row">
+	<div class="fixed-bottom">
+			<img src="../../assets/new/bottom-image-2x.png" class="footer-image">
+		<div class="footer col-md-12">
+			<div class="col-7 float-start">
+				<p class="text-end user-profile" style="transform: translateY(10px)"> Welcome {{ userName }} ! </p>
+				<p class="text-end me-5 user-profile" style="transform: translateY(-10px); margin-bottom: 0;"> {{ role }}</p>
+			</div>
+			<div class="col-5 float-end">
+				<img class="text-end profile-icon" src="../assets/new/profile-icon-2x.png" 
+				style="transform: translateY(10px);">
+				<p class="text-end profile-text">Profile</p>
+			</div>
+		</div>
+	</div>
 </div>
-
-<ng-template #other_content>
-<div class="fixed-bottom">
-    <img src="../../assets/Bottom Triangle.png" class="footer-image">
-</div>
-<div class="fixed-bottom row">
-
-    <div class="col-md-2">
-        <!-- <img src="../../assets/Footer Menu Link-2x.png" class="menu-icon"> -->
-    </div>
-    <!-- <div class="col-md-8 text-center">
-        <p class="user-info">Welcome!!</p>
-    </div>
-    <div class="col-md-2">
-        <img src="../../assets/Profile Icon-2x.png" class="profile-icon">
-    </div> -->
-</div></ng-template>

@@ -78,29 +78,6 @@ $btn-bg-color: #473658;
 	margin-top: 5%;
 }
 
-.fixed-bottom
-{
-	position: fixed;
-	.footer-image
-	{
-		position: inherit;
-		width: 400px;
-		bottom: 28px;
-		left: -50px;
-		z-index: -2	;
-	}
-	.footer
-	{
-		position: relative;
-		background-color: $btn-bg-color;
-		color: #ffffff;
-		height: 65px;
-		width: 106%;
-		margin-left: -3%;
-		z-index: 10;
-	}
-}
-
 @media screen and (min-width: 660px)
 {
 	// For screens >= 660px [Ipads and Tablets]
@@ -154,13 +131,6 @@ $btn-bg-color: #473658;
 		.btn-title
 		{
 			font-size: 1rem;
-		}
-	}
-	.fixed-bottom
-	{
-		.footer-image
-		{
-			width: 540px;
 		}
 	}
 	.hidden-tabs

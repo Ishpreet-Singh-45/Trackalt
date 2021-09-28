@@ -13,12 +13,14 @@ export class FooterComponent implements OnInit {
   constructor(private router: Router) {
    }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.userName = localStorage.getItem("userName");
     this.role = localStorage.getItem("role");
   }
  
-  logout() {
+  logout() 
+  {
     localStorage.clear();
     this.router.navigate(['/login']);
     location.reload()

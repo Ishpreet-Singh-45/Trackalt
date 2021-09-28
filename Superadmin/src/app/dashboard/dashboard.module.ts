@@ -11,10 +11,21 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { StudentComponent } from './student/student.component';
 import { DistrictCalendarComponent } from './district-calendar/district-calendar.component';
 import { SchoolCalendarComponent } from './school-calendar/school-calendar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, DistrictComponent, SchoolComponent, AdminComponent, TeacherComponent, StudentComponent, DistrictCalendarComponent, SchoolCalendarComponent],
+  declarations: [
+    DashboardComponent, 
+    DistrictComponent, 
+    SchoolComponent, 
+    AdminComponent, 
+    TeacherComponent, 
+    StudentComponent, 
+    DistrictCalendarComponent, 
+    SchoolCalendarComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
